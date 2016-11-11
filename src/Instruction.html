@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Инструкция</title>
+</head>
+<body>
+
+
+_________
+
+Установка:
+
+-Установить jdk1.7.021 x86
+-cmd > cd %dir_с_jcp.1.0.54%\lib
+> Install.bat "C:\%ProgramFiles%\Java\jdk1.7.0_21"
+> Видим крокозябры и ждем "Script SUCCEEDED" :D
+> controlPane.bat "C:\%ProgramFiles%\Java\jdk1.7.0_21" > goto 1.1)
+
+--
+
+1.1)
+В HDImageStore -> Создать
+Имя: test_mo_2
+Ключ обмена
+Пароль: 123456
+Аутентификация клиента
+-> Создать > Base64 > Сохранить.
+1.2)
+Сохраненный файл открыть текстовым редактором, скопировать всё > переходим на
+https://www.cryptopro.ru/certsrv/certrqxt.asp > вставляем скопированное > Выдать >
+Base-64 > Загрузить сертификат.
+1.3)
+Кликнуть по созданному контейнеру в HDImageStore (test_mo_2) > Добавить >
+Найти-открыть сохраненный сертификат
+
+2) Хранилища сертификатов. Создать новое (C:\Storage\Stor\ , пароль 123456)
+Добавть сертификат fss.cer
+
+_________
+
+-Скопировать папку Security в C:\%ProgramFiles%\Java\jdk1.7.0_21\jre\lib с заменой
+-В C:\%ProgramFiles%\Java\jdk1.7.0_21\jre\lib найти джарники JCPxml.jar,xmlsec,commos-logging,serializer,XMLDSigRI,wss4j,xalan
+и удалить нахрен!
+
+</body>
+</html>
