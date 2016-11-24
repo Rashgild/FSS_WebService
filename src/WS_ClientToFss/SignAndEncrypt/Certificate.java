@@ -22,8 +22,8 @@ public class Certificate {
     public  static X509Certificate ExtractCertFromCertStore ()
             throws NoSuchProviderException, KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException, UnrecoverableKeyException {
         KeyStore allCertStore = null;
-        String storepass="123456";
-        String alias="FSS.cer";
+        String storepass=GlobalVariables.CertPassword[1];
+        String alias=GlobalVariables.CertAlias[1];
 
         allCertStore = KeyStore.getInstance("CertStore");
         File f = new File(GlobalVariables.PathToCertStore[1]);

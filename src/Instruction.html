@@ -7,40 +7,41 @@
 <body>
 
 
-_________
+<br> _________
 
-Установка:
+<br>Установка:
 
--Установить jdk1.7.021 x86
--cmd > cd %dir_с_jcp.1.0.54%\lib
-> Install.bat "C:\%ProgramFiles%\Java\jdk1.7.0_21"
-> Видим крокозябры и ждем "Script SUCCEEDED" :D
-> controlPane.bat "C:\%ProgramFiles%\Java\jdk1.7.0_21" > goto 1.1)
+<br>-Установить jdk1.7.021 x86
+<br>-cmd > cd %dir_с_jcp.1.0.54%\lib
+<br>> Install.bat "C:\%ProgramFiles%\Java\jdk1.7.0_21"
+<br>> Видим крокозябры и ждем "Script SUCCEEDED" :D
+<br>> controlPane.bat "C:\%ProgramFiles%\Java\jdk1.7.0_21" > goto 1.1)
 
---
+<br>--
 
-1.1)
-В HDImageStore -> Создать
-Имя: test_mo_2
-Ключ обмена
-Пароль: 123456
-Аутентификация клиента
--> Создать > Base64 > Сохранить.
-1.2)
-Сохраненный файл открыть текстовым редактором, скопировать всё > переходим на
-https://www.cryptopro.ru/certsrv/certrqxt.asp > вставляем скопированное > Выдать >
-Base-64 > Загрузить сертификат.
-1.3)
-Кликнуть по созданному контейнеру в HDImageStore (test_mo_2) > Добавить >
-Найти-открыть сохраненный сертификат
-
-2) Хранилища сертификатов. Создать новое (C:\Storage\Stor\ , пароль 123456)
-Добавть сертификат fss.cer
-
-_________
-
--Скопировать папку Security в C:\%ProgramFiles%\Java\jdk1.7.0_21\jre\lib с заменой
--В C:\%ProgramFiles%\Java\jdk1.7.0_21\jre\lib найти джарники JCPxml.jar,xmlsec,commos-logging,serializer,XMLDSigRI,wss4j,xalan
+<br>1.1)
+<br>В HDImageStore -> Создать
+<br>Имя: Нужное имя, например, test_mo_2. Хранится в GlobalVariables.CertAliasMO[1]
+<br>Ключ обмена
+<br>Пароль: 123456
+<br>Аутентификация клиента
+<br>-> Создать > Base64 > Сохранить.
+<br>1.2)
+<br>Сохраненный файл открыть текстовым редактором, скопировать всё > переходим на
+<br>https://www.cryptopro.ru/certsrv/certrqxt.asp > вставляем скопированное > Выдать >
+<br>Base-64 > Загрузить сертификат.
+<br>1.3)
+<br>Кликнуть по созданному контейнеру в HDImageStore (test_mo_2) > Добавить >
+<br>Найти-открыть сохраненный сертификат
+<br>
+<br>
+<br>2) Хранилища сертификатов. Создать новое (C:\Storage\Stor\ , пароль 123456)
+<br>Добавть сертификат fss.cer
+<br>
+<br>_________
+<br>
+<br>-Скопировать папку Security в C:\%ProgramFiles%\Java\jdk1.7.0_21\jre\lib с заменой
+<br>-В C:\%ProgramFiles%\Java\jdk1.7.0_21\jre\lib найти джарники JCPxml.jar,xmlsec,commos-logging,serializer,XMLDSigRI,wss4j,xalan
 и удалить нахрен!
 
 </body>

@@ -71,15 +71,15 @@ public class SQLStoreQuer {
                 "                        ,rvr.datefrom as HOSPITAL_BREACH_CODE           \n" +
                 "                        ,rvr.regimeviolationtype_id as HOSPITAL_BREACH_DT\n" +
                 "                        ,dd.isclose     \n" +
-                "                        --,docname.id as DocId\n" +
+             //   "                        --,docname.id as DocId\n" +
                 "                        ,dd.idc10_id as none_giagnosis  \n" +
                 "                        ,dd.disabilitycase_id as none_discase  \n" +
                 "                        ,dd.documenttype_id as none_ln_type \n" +
                 "                        ,dd.hospitalizednumber   \n" +
-                "                        -- ,dd.duplicate_id as f_duplicate  \n" +
-                "                        --,case when (select dd.id from disabilitydocument b, disabilitydocument c where b.id=c.duplicate_id and b.id=dd.id) is not null then '1' else '0'end as dublicate --111\n" +
-                "                        --,p2.birthday as serv2_age \n" +
-                "                        --,vkr2.code as serv2_relation \n" +
+              //  "                        -- ,dd.duplicate_id as f_duplicate  \n" +
+               // "                        --,case when (select dd.id from disabilitydocument b, disabilitydocument c where b.id=c.duplicate_id and b.id=dd.id) is not null then '1' else '0'end as dublicate --111\n" +
+               // "                        --,p2.birthday as serv2_age \n" +
+              //  "                        --,vkr2.code as serv2_relation \n" +
                 "                        ,dd2.number as prevDocument \n" +
                 "                        ,coalesce(vddcr.codef,'') as mse_result  \n" +
                 "                        from disabilitydocument dd    \n" +
@@ -121,13 +121,11 @@ public class SQLStoreQuer {
                 "            left join vocinvalidity vi on vi.id=mss.invalidity_id\n" +
                 "                        where dd.exportdate is null  \n" +
                 "                        and dd.anotherlpu_id is null  \n" +
-                "                        --and dd.isclose='1' \n" +
+
                 "                        and (dd.noactuality is null or dd.noactuality='0') \n" +
                 "                        and (ss.dtype='StatisticStubExist' or ss.id is null) \n" +
-                "                     --   and dc.patient_id=343577\n" +
                 "            and dd.id ="+s+
-                "                        order by dd.issuedate desc \n" +
-                "                        --limit 10";
+                "                        order by dd.issuedate desc \n";
 
         return SqlReq;
     }

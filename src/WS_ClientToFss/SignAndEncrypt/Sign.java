@@ -1,6 +1,5 @@
 package WS_ClientToFss.SignAndEncrypt;
 
-import HelpersMethods.Doc;
 import HelpersMethods.GlobalVariables;
 import org.apache.ws.security.WSSecurityException;
 import org.apache.ws.security.message.WSSecHeader;
@@ -10,19 +9,14 @@ import org.apache.xpath.XPathAPI;
 import org.w3c.dom.*;
 import org.w3c.dom.Node;
 
-import javax.xml.crypto.KeySelector;
 import javax.xml.crypto.MarshalException;
 import javax.xml.crypto.XMLStructure;
 import javax.xml.crypto.dsig.*;
 import javax.xml.crypto.dsig.dom.DOMSignContext;
-import javax.xml.crypto.dsig.dom.DOMValidateContext;
 import javax.xml.crypto.dsig.keyinfo.KeyInfo;
 import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
 import javax.xml.crypto.dsig.keyinfo.X509Data;
 import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.soap.*;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.stream.StreamSource;
@@ -33,7 +27,6 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -43,9 +36,9 @@ public class Sign {
 
     public static SOAPMessage Signation() throws Exception {
 
-        //TODO !!!ПРОВЕРИТЬ TEST_MO2!!!
-        X509Certificate cert = Certificate.GetCertificateFromStorage("test_mo_2");
-        PrivateKey privateKey = Certificate.GetPrivateKey("123456","test_mo_2");
+
+        X509Certificate cert = Certificate.GetCertificateFromStorage(GlobalVariables.KeyAliasMO[1]);
+        PrivateKey privateKey = Certificate.GetPrivateKey(GlobalVariables.KeyPasswordMO[1],GlobalVariables.KeyAliasMO[1]);
 
         // Подготовка сообщения: в данном случае — это чтение сообщения из файла
         MessageFactory mf = MessageFactory.newInstance();
@@ -133,8 +126,8 @@ public class Sign {
             MarshalException, XMLSignatureException, TransformerException
     {
         //TODO ПРОВЕРИТЬ!
-        X509Certificate cert = Certificate.GetCertificateFromStorage("test_mo_2");
-        PrivateKey privateKey = Certificate.GetPrivateKey("123456","test_mo_2");
+        X509Certificate cert = Certificate.GetCertificateFromStorage(GlobalVariables.KeyAliasMO[1]);
+        PrivateKey privateKey = Certificate.GetPrivateKey(GlobalVariables.KeyPasswordMO[1],GlobalVariables.KeyAliasMO[1]);
 
         // Подготовка сообщения: в данном случае — это чтение сообщения из файла
         //MessageFactory mf = MessageFactory.newInstance();

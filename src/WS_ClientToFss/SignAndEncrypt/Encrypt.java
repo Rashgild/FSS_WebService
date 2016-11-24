@@ -1,27 +1,22 @@
 package WS_ClientToFss.SignAndEncrypt;
 
-import HelpersMethods.Doc;
 import HelpersMethods.GlobalVariables;
 import org.apache.xml.security.encryption.EncryptedData;
 import org.apache.xml.security.encryption.EncryptedKey;
 import org.apache.xml.security.encryption.XMLCipher;
 import org.apache.xml.security.keys.KeyInfo;
 import org.apache.xml.security.keys.content.X509Data;
-import org.apache.xml.security.utils.EncryptionConstants;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import ru.CryptoPro.JCPxml.Consts;
 import ru.CryptoPro.JCPxml.XmlInit;
-import ru.CryptoPro.JCPxml.xmldsig.JCPXMLDSigInit;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.xml.soap.*;
 import javax.xml.transform.stream.StreamSource;
 import java.io.FileInputStream;
-import java.security.Key;
-import java.security.PrivateKey;
 import java.security.cert.X509Certificate;
 
 /**
@@ -146,7 +141,8 @@ public class Encrypt {
                 CipherValue2.addTextNode(eElement.getElementsByTagName("xenc:CipherValue").item(1).getTextContent());
             }
         }
-        X509Certificate.addTextNode(Certificate.certToBase64(Certificate.GetCertificateFromStorage("test_mo_2")));
+
+        X509Certificate.addTextNode(Certificate.certToBase64(Certificate.GetCertificateFromStorage(GlobalVariables.KeyAliasMO[1])));
         //сохранение в файл
 
         //Doc.SaveSOAPToXML("tempEncrypted.xml", soapMessage);

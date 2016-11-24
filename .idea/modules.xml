@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FSS_WebService.iml" filepath="$PROJECT_DIR$/FSS_WebService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WS_ToMedos_Client/WS_ToMedos_Client.iml" filepath="$PROJECT_DIR$/WS_ToMedos_Client/WS_ToMedos_Client.iml" />
     </modules>
   </component>
 </project>

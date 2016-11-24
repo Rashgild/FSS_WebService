@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact name="FSS_WebService:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/FSS_WebService_jar</output-path>
+    <root id="root">
+      <element id="archive" name="FSS_WebService.jar">
+        <element id="module-output" name="FSS_WebService" />
+        <element id="module-output" name="WS_ToMedos_Client" />
+      </element>
+      <element id="library" level="project" name="Need" />
+      <element id="library" level="project" name="Samples" />
+      <element id="library" level="module" name="JUnit4" module-name="FSS_WebService" />
+    </root>
+  </artifact>
+</component>

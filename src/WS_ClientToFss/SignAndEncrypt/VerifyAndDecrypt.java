@@ -16,13 +16,10 @@ import javax.xml.crypto.dsig.XMLSignatureFactory;
 import javax.xml.crypto.dsig.dom.DOMValidateContext;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.soap.*;
 import javax.xml.transform.stream.StreamSource;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.security.*;
-import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Iterator;
 
@@ -35,8 +32,8 @@ public class VerifyAndDecrypt {
     {
         try {
             Doc.SaveSOAPToXML("CryptedResponse.xml",soapMessage); // сохраняем в файл
-            org.w3c.dom.Document doc = StartDecrypt(Certificate.GetCertificateFromStorage(GlobalVariables.CertAliasMO[1]),
-                    Certificate.GetPrivateKey(GlobalVariables.CertPasswordMO[1],GlobalVariables.CertAliasMO[1])); // расшифровываем на нашем открытом ключе
+            org.w3c.dom.Document doc = StartDecrypt(Certificate.GetCertificateFromStorage(GlobalVariables.KeyAliasMO[1]),
+                    Certificate.GetPrivateKey(GlobalVariables.KeyPasswordMO[1],GlobalVariables.KeyAliasMO[1])); // расшифровываем на нашем открытом ключе
 
             // writeDoc(doc,System.out);
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

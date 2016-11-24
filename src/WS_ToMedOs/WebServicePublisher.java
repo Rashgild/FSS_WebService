@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 public class WebServicePublisher {
     public static void main(String... args) throws IOException {
         GlobalVariables.GetConfiguration();
+        System.setProperty("javax.net.ssl.trustStore",GlobalVariables.PathToSSLcert[1]);//КОНФ
+        System.setProperty("javax.net.ssl.trustStorePassword", "123456");
         Endpoint.publish(GlobalVariables.ipWS[1]+":"+GlobalVariables.portWS[1]+"/webservice/start", new WebServiceIMPL());
         System.out.println("Сервис запущен успешно! Адрес: \n");
         System.out.println(GlobalVariables.ipWS[1]+":"+GlobalVariables.portWS[1]+"/webservice/start?wsdl");

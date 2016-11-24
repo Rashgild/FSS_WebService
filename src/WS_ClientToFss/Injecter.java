@@ -83,7 +83,6 @@ public class Injecter implements SOAPHandler<SOAPMessageContext> {
 
     private static int WhatTheFunc(SOAPMessage msg)
     {
-        int flag=0;
         Document document = null;
         try {
             document = msg.getSOAPPart().getEnvelope().getOwnerDocument();
@@ -94,18 +93,18 @@ public class Injecter implements SOAPHandler<SOAPMessageContext> {
 
             if(str[5].equals("prParseFilelnlpu xmlns"))
             {
-                return flag=2;
+                return 2;
             }
 
             if(str[5].equals("getNewLNNumRange xmlns"))
             {
-                return flag=1;
+                return 1;
             }
 
         } catch (SOAPException e) {
             e.printStackTrace();
         }
-        return flag;
+        return 0;
     }
 
     @Override

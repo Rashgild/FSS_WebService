@@ -32,9 +32,11 @@ public class SQLConnect {
             result1 = statement.executeQuery(reqSQL);
             String N="";
             connection.close();
+
             return result1;
 
         } catch (Exception ex) {
+
             ex.printStackTrace();
         }
             //Logger.getLogger(WebServiceImpl.class.getName()).log(Level.SEVERE, null, ex);}
