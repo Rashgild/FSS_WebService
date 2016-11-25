@@ -121,10 +121,9 @@ public class SQLStoreQuer {
                 "            left join vocinvalidity vi on vi.id=mss.invalidity_id\n" +
                 "                        where dd.exportdate is null  \n" +
                 "                        and dd.anotherlpu_id is null  \n" +
-
                 "                        and (dd.noactuality is null or dd.noactuality='0') \n" +
                 "                        and (ss.dtype='StatisticStubExist' or ss.id is null) \n" +
-                "            and dd.id ="+s+
+                "            and dd.id = 65404"+GlobalVariables.DisabilityDocument_id+
                 "                        order by dd.issuedate desc \n";
 
         return SqlReq;
