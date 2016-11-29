@@ -27,6 +27,7 @@ public class WebServicePublisher {
             SQLConnect.SQL_Select("select id from Patient limit 1");
             System.out.println("...Подключено!");
         }catch (Exception ex) {
+            // System.out.println("123!");
             ex.printStackTrace();
             Logger.getLogger(WebServiceIMPL.class.getName()).log(Level.SEVERE, null, ex);}
 

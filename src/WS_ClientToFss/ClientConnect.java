@@ -14,11 +14,15 @@ public class ClientConnect {
     public static void main(String[] args) throws Exception{
 
         GlobalVariables.GetConfiguration();
-        System.setProperty("javax.net.ssl.trustStore",GlobalVariables.PathToSSLcert[1]);//КОНФ
 
+
+        System.setProperty("javax.net.ssl.trustStore",GlobalVariables.PathToSSLcert[1]);//КОНФ
         //System.setProperty("javax.net.ssl.trustStore","C:\\Program Files\\Java\\jdk1.7.0_21\\jre\\lib\\security\\cacerts1");
         System.setProperty("javax.net.ssl.trustStorePassword", "123456");
 
+
+        //System.setProperty("javax.net.ssl.trustStore","C:\\cacert_my");//КОНФ
+       // System.setProperty("javax.net.ssl.trustStorePassword", "123456");
         FileOperationsLnImplService service = new  FileOperationsLnImplService();
         FileOperationsLn start = service.getFileOperationsLnPort();
 

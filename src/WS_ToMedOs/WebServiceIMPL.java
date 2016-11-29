@@ -56,7 +56,7 @@ public class WebServiceIMPL implements IWebService
         prParseFilelnlpuElement.setPXmlFile(pXmlFile);
         WSResult result = start.prParseFilelnlpu(prParseFilelnlpuElement);
 
-        result.getMESS();
+       // result.getMESS();
 
         //System.out.println(GlobalVariables.DisabilityDocument_id);
         return result;

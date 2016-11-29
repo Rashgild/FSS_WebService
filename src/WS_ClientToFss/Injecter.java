@@ -3,6 +3,9 @@ package WS_ClientToFss;
 import HelpersMethods.Doc;
 import WS_ClientToFss.SignAndEncrypt.VerifyAndDecrypt;
 import org.w3c.dom.Document;
+import ru.ibs.fss.ln.ws.fileoperationsln.PrParseFilelnlpuElement;
+import ru.ibs.fss.ln.ws.fileoperationsln.ROWSET;
+import ru.ibs.fss.ln.ws.fileoperationsln.WSResult;
 
 import javax.xml.namespace.QName;
 import javax.xml.soap.SOAPException;
@@ -11,6 +14,7 @@ import javax.xml.ws.handler.MessageContext;
 import javax.xml.ws.handler.soap.SOAPHandler;
 import javax.xml.ws.handler.soap.SOAPMessageContext;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Set;
 
 /**
@@ -49,7 +53,12 @@ public class Injecter implements SOAPHandler<SOAPMessageContext> {
                 try {
                     SOAPMessage msg = context.getMessage(); // перехватываем респонз
                     msg = VerifyAndDecrypt.VerifyAndDecrypt(msg);
-                    msg.writeTo(System.out);
+
+                    long curTime = System.currentTimeMillis();
+                    String curStringDate = new SimpleDateFormat("dd.MM.yyyy").format(curTime);
+
+                    //msg.writeTo(System.out);
+                    Doc.SaveSOAPToXML("Response"+curStringDate+".xml", msg);
                     context.setMessage(msg);
 
                 } catch (Exception e) {
@@ -67,7 +76,9 @@ public class Injecter implements SOAPHandler<SOAPMessageContext> {
             System.out.println("\n--------------------\n " +
                     "Ошибка:" +
                     "\n--------------------");
+
             msg.writeTo(System.out);
+            Doc.SaveSOAPToXML("Response"+System.currentTimeMillis(), msg);
             System.out.println("\n--------------------\n");
 
         } catch (SOAPException | IOException e) {

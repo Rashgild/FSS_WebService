@@ -10,4 +10,6 @@ public class Client {
 
     WebServiceIMPLService service = new WebServiceIMPLService();
     IWebService start = service.getWebServiceIMPLPort();
+
+    //start.
 }

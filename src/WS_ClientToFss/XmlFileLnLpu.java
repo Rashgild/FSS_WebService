@@ -26,7 +26,9 @@ import java.util.Calendar;
  */
 public class XmlFileLnLpu {
     private static int fdoc=0,fdoc2=0,fdoc3=0; // флаги врачей
+
     private static int fvk=0,fvk2=0,fvk3=0; // флаги ВК
+
     private static int fresult=0,fBREACH=0; //флаг блоков result и breach
 
     public static SOAPMessage StartSetxmlFileLn()
@@ -38,11 +40,11 @@ public class XmlFileLnLpu {
             soapMessage = SignationMessage(soapMessage);
             Doc.SaveSOAPToXML("LNSigned.xml",soapMessage);
 
-
             MessageFactory mf = MessageFactory.newInstance();
             SOAPMessage NewMessg = mf.createMessage();
             NewMessg= Encrypt.CreateXMLAndEncrypt(NewMessg, "LNSigned.xml");
             Doc.SaveSOAPToXML("LNCrypted.xml",NewMessg);
+
             /*soapMessage.writeTo(System.out);
             System.out.println(GlobalVariables.DisabilityDocument_id);
             soapMessage = EncryptDecrypt.CreateXMLAndEncrypt(soapMessage);*/
@@ -60,6 +62,12 @@ public class XmlFileLnLpu {
         ResultSet ResultSQLRequest = SQLConnect.SQL_Select(SQLStoreQuer.SQL_Req());
         ResultSet ResultSQLRequest2 = SQLConnect.SQL_Select(SQLStoreQuer.SelectLNN());
 
+System.out.println("====================================");
+System.out.println(SQLStoreQuer.SQL_Req());
+System.out.println("====================================");
+
+        System.out.println(SQLStoreQuer.SelectLNN());
+        System.out.println("====================================");
         ArrayList<String> treat_doc = treat_doc();
         ArrayList<String> treat_vk = treat_vk();
         try {
