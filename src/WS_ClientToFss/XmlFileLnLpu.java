@@ -94,8 +94,8 @@ public class XmlFileLnLpu {
         soapEnv.addNamespaceDeclaration("wsu","http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd");
         soapEnv.addNamespaceDeclaration("xsd","http://www.w3.org/2001/XMLSchema");
         soapEnv.addNamespaceDeclaration("xsi","http://www.w3.org/2001/XMLSchema-instance");
-
-        SOAPElement prParseFilelnlpu = soapBody.addChildElement("prParseFilelnlpu");
+        soapEnv.addNamespaceDeclaration("fil","http://ru/ibs/fss/ln/ws/FileOperationsLn.wsdl");
+        SOAPElement prParseFilelnlpu = soapBody.addChildElement("fil:prParseFilelnlpu");
         prParseFilelnlpu.addNamespaceDeclaration("","http://ru/ibs/fss/ln/ws/FileOperationsLn.wsdl");
         prParseFilelnlpu.addNamespaceDeclaration("ds","http://www.w3.org/2000/09/xmldsig#");
         prParseFilelnlpu.addNamespaceDeclaration("SOAP-ENV","http://schemas.xmlsoap.org/soap/envelope/");

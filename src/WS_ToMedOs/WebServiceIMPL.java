@@ -87,7 +87,7 @@ public class WebServiceIMPL implements IWebService
 
 
 
-        //SaveInBD(messag,result.getSTATUS());
+        SaveInBD(messag,result.getSTATUS());
         return result;
     }
 

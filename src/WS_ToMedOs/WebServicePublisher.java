@@ -19,24 +19,43 @@ import java.util.logging.Logger;
 public class WebServicePublisher {
     public static void main(String... args) throws IOException {
 
+        System.out.println("------------------------------------------------------------");
         //GlobalVariables.GetConfiguration();
-        GetConfiguration();
+        try {
+            GetConfiguration();
+        }finally {
+            System.err.println("Конфигурация загружена");
+        }
+
         System.setProperty("javax.net.ssl.trustStore",GlobalVariables.PathToSSLcert[1]);//КОНФ
         System.setProperty("javax.net.ssl.trustStorePassword", "123456");
-        Endpoint.publish(GlobalVariables.ipWS[1]+":"+GlobalVariables.portWS[1]+"/webservice/start", new WebServiceIMPL());
-        System.out.println("Сервис запущен успешно! Адрес: \n");
-        System.out.println(GlobalVariables.ipWS[1]+":"+GlobalVariables.portWS[1]+"/webservice/start?wsdl");
-        System.out.println("Попытка подключения к БД...");
 
-        //ResultSet result = null;
         try {
-            //result =
+            Endpoint.publish(GlobalVariables.ipWS[1]+":"+GlobalVariables.portWS[1]+"/webservice/start", new WebServiceIMPL());
+        }catch(Error e){
+            System.err.println(e.toString());
+        }finally {
+            System.err.println("Сервис запущен успешно! На адресе: ");
+            System.err.println(GlobalVariables.ipWS[1]+":"+GlobalVariables.portWS[1]+"/webservice/start?wsdl");
+        }
+
+        try {
+            System.err.println("URL DB: "+GlobalVariables.urlDB[1]);
+            System.err.println("Попытка подключения к БД...");
             SQLConnect.SQL_Select("select id from Patient limit 1");
-            System.out.println("...Подключено!");
+
         }catch (Exception ex) {
             // System.out.println("123!");
             ex.printStackTrace();
             Logger.getLogger(WebServiceIMPL.class.getName()).log(Level.SEVERE, null, ex);}
+
+        finally {
+            System.err.println("...Подключено!");
+        }
+
+        System.err.println("Ключевой алиас: "+GlobalVariables.KeyAliasMO[1]);
+        System.err.println("Сертификат УЛ: "+GlobalVariables.CertAlias[1]);
+        System.out.println("------------------------------------------------------------");
 
     }
 
