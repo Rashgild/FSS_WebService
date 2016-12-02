@@ -127,4 +127,10 @@ public class SQLStoreQuer {
 
         return SqlReq;
     }
+
+    public static String InsertRequest(String req)
+    {
+        return "INSERT INTO exportfsslog (requestcode, requestdate,requesttime,requesttype)\n" +
+                "VALUES ('"+req+"',current_date,current_time,'XmlFileLnLpu') RETURNING id;";
+    }
 }

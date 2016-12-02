@@ -1,6 +1,7 @@
 package WS_ClientToFss;
 
 import HelpersMethods.Doc;
+import HelpersMethods.GlobalVariables;
 import WS_ClientToFss.SignAndEncrypt.VerifyAndDecrypt;
 import org.w3c.dom.Document;
 import ru.ibs.fss.ln.ws.fileoperationsln.PrParseFilelnlpuElement;
@@ -37,6 +38,7 @@ public class Injecter implements SOAPHandler<SOAPMessageContext> {
             if (WhatTheFunc(soapMsg) == 1)//
             {
                 soapMsg = LNNNumbers.StartGetLNNumbers(soapMsg);
+                GlobalVariables.Type="LNNumbers";
                 context.setMessage(soapMsg);
                 //System.out.println("Номера!");
             }
@@ -44,6 +46,7 @@ public class Injecter implements SOAPHandler<SOAPMessageContext> {
             if (WhatTheFunc(soapMsg) == 2)//
             {
                 soapMsg= XmlFileLnLpu.StartSetxmlFileLn();
+                GlobalVariables.Type="XmlFileLnLpu";
                 context.setMessage(soapMsg);
             }
         }
@@ -54,11 +57,11 @@ public class Injecter implements SOAPHandler<SOAPMessageContext> {
                     SOAPMessage msg = context.getMessage(); // перехватываем респонз
                     msg = VerifyAndDecrypt.VerifyAndDecrypt(msg);
 
-                    long curTime = System.currentTimeMillis();
+                   /* long curTime = System.currentTimeMillis();
                     String curStringDate = new SimpleDateFormat("dd.MM.yyyy").format(curTime);
-
                     //msg.writeTo(System.out);
-                    Doc.SaveSOAPToXML("Response"+curStringDate+".xml", msg);
+                    Doc.SaveSOAPToXML("Response"+curStringDate+".xml", msg);*/
+                    GlobalVariables.Response = Doc.SoapMessageToString(msg);
                     context.setMessage(msg);
 
                 } catch (Exception e) {

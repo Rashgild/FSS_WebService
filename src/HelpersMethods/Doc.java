@@ -58,15 +58,14 @@ public class Doc {
     public static void SaveSOAPToXML( String FileName, SOAPMessage soapMessage)
             throws IOException, SOAPException {
 
-        ByteArrayOutputStream out2 = new ByteArrayOutputStream();
-        soapMessage.writeTo(out2);
-        String strMsg = new String(out2.toByteArray());
+        String strMsg = SoapMessageToString(soapMessage);//new String(out2.toByteArray());//.getBytes("UTF-16");
         try {
-            File file = new File(GlobalVariables.PathToSave[1]+FileName);
-            FileWriter fileWriter = new FileWriter(file);
-            fileWriter.write(strMsg);
-            fileWriter.flush();
-            fileWriter.close();
+
+            Writer w = new OutputStreamWriter(new FileOutputStream(GlobalVariables.PathToSave[1]+FileName), "UTF-8");
+            w.write(strMsg);
+            w.flush();
+            w.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -84,5 +83,19 @@ public class Doc {
         ByteArrayInputStream in = new ByteArrayInputStream(canonicalMessage);
         MessageFactory factory = MessageFactory.newInstance();
         return factory.createMessage(null, in);
+    }
+
+    public static String SoapMessageToString(SOAPMessage soapMessage)
+    {
+        try {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            soapMessage.writeTo(stream);
+            String message = new String(stream.toByteArray(), "utf-8");
+            return message;
+        }
+        catch (SOAPException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -40,6 +40,10 @@ public class XmlFileLnLpu {
             soapMessage = SignationMessage(soapMessage);
             Doc.SaveSOAPToXML("LNSigned.xml",soapMessage);
 
+
+            //TODO Подписанный запрос храним в переменной
+            GlobalVariables.Request = Doc.SoapMessageToString(soapMessage);
+
             MessageFactory mf = MessageFactory.newInstance();
             SOAPMessage NewMessg = mf.createMessage();
             NewMessg= Encrypt.CreateXMLAndEncrypt(NewMessg, "LNSigned.xml");
@@ -62,12 +66,6 @@ public class XmlFileLnLpu {
         ResultSet ResultSQLRequest = SQLConnect.SQL_Select(SQLStoreQuer.SQL_Req());
         ResultSet ResultSQLRequest2 = SQLConnect.SQL_Select(SQLStoreQuer.SelectLNN());
 
-System.out.println("====================================");
-System.out.println(SQLStoreQuer.SQL_Req());
-System.out.println("====================================");
-
-        System.out.println(SQLStoreQuer.SelectLNN());
-        System.out.println("====================================");
         ArrayList<String> treat_doc = treat_doc();
         ArrayList<String> treat_vk = treat_vk();
         try {
@@ -240,6 +238,7 @@ System.out.println("====================================");
                 VerifyNode(ResultSQLRequest,"LPU_EMPLOYER",ROW,LPU_EMPLOYER);
                 VerifyNode(ResultSQLRequest,"LPU_EMPL_FLAG",ROW,LPU_EMPL_FLAG);
                 LN_CODE.setTextContent(ResultSQLRequest.getString("LN_CODE"));
+
                 VerifyNode(ResultSQLRequest,"prevDocument",ROW,PREV_LN_CODE);
                 PRIMARY_FLAG.setTextContent(ResultSQLRequest.getString("PRIMARY_FLAG"));
                 DUPLICATE_FLAG.setTextContent(ResultSQLRequest.getString("DUPLICATE_FLAG"));

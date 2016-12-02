@@ -39,6 +39,12 @@ public class GlobalVariables {
 
     public static String CertAlias[];//=FSS.cer
     public static String CertPassword[];//=123456
+
+    public static int Id=0;
+    public static String Response="";
+    public static String Request="";
+    public static String Type="";
+    public static String Disnumber="";
     /*
     public static String pathtofile[];
     public static String AliasMO[];//="1986";
@@ -46,7 +52,7 @@ public class GlobalVariables {
 
     public static void GetConfiguration() throws IOException {
 
-        InputStream inp = ClassLoader.getSystemClassLoader().getResourceAsStream("configuration.conf");
+        InputStream inp = ClassLoader.getSystemClassLoader().getResourceAsStream("Configuration.conf");
         BufferedReader reader = new BufferedReader(new InputStreamReader(inp));
         String line;
         List<String> lines = new ArrayList<String>();

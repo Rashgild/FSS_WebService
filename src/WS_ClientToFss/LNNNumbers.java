@@ -26,11 +26,11 @@ public class LNNNumbers {
             //TODO Формирование каркаса XML
             CreateXMLSkeleton(soapMsg);
 
-
             //TODO Подписание xml
             soapMsg= Sign.Signation();
             Doc.SaveSOAPToXML("GetNumSigned.xml", soapMsg);
 
+            GlobalVariables.Request = Doc.SoapMessageToString(soapMsg);
             //TODO Шифрование
             MessageFactory mf = MessageFactory.newInstance();
 

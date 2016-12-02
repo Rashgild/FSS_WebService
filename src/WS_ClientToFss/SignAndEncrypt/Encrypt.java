@@ -61,6 +61,7 @@ public class Encrypt {
         encryptedData.setKeyInfo(keyInfo);
         //зашифрование документа
         xmlCipher.doFinal(doc, element, false);
+        is.close();
         return doc;
     }
 

@@ -1,10 +1,12 @@
 package WS_ToMedOs;
 
 import HelpersMethods.GlobalVariables;
+import HelpersMethods.SQLConnect;
 import ru.ibs.fss.ln.ws.fileoperationsln.*;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import java.util.List;
 
 /**
  * Created by rkurbanov on 10.11.16.
@@ -31,7 +33,22 @@ public class WebServiceIMPL implements IWebService
         FileOperationsLn start = service.getFileOperationsLnPort();
         System.out.println("Подключились!");
         FileOperationsLnUserGetNewLNNumRangeOut s = start.getNewLNNumRange(OGRN,count_numbers);
-        //List<String> Numbers = s.getDATA().getLNNum();
+
+
+        String result = s.getMESS();
+
+        //INFO.ROWSET rowset2 = inf!=null?inf.getROWSET():null;
+
+       /* LnNumList lnNumList = s!=null?s.getDATA():null;
+        List<String> list =  lnNumList.getLNNum()!=null?lnNumList.getLNNum():null;
+
+        for (int i = 0; i < list.size(); i++) {
+            result += list.get(i);
+        }*/
+
+
+       // SaveInBD(result,"");
+
         return s;
         //System.out.println(Numbers.get(0));
     }
@@ -39,7 +56,6 @@ public class WebServiceIMPL implements IWebService
     @WebMethod
     public WSResult SetDisabilityDocument(String DisabilityDocument_id)
             throws SOAPException_Exception {
-
 
         GlobalVariables.DisabilityDocument_id = DisabilityDocument_id;
 
@@ -56,9 +72,50 @@ public class WebServiceIMPL implements IWebService
         prParseFilelnlpuElement.setPXmlFile(pXmlFile);
         WSResult result = start.prParseFilelnlpu(prParseFilelnlpuElement);
 
-       // result.getMESS();
+        String messag = result.getMESS();
+        INFO inf = result.getINFO();
+        INFO.ROWSET rowset2 = inf!=null?inf.getROWSET():null;
+        INFO.ROWSET.ROW row = rowset2!=null?(rowset2.getROW()!=null?rowset2.getROW().get(0):null):null;
+        INFO.ROWSET.ROW.ERRORS errors = row!=null?row.getERRORS():null;
+        List<INFO.ROWSET.ROW.ERRORS.ERROR> errors1 = errors!=null?errors.getERROR():null;
 
-        //System.out.println(GlobalVariables.DisabilityDocument_id);
+        if (errors1!=null&&errors1.size()>0){
+            for (int i = 0; i < errors1.size(); i++) {
+                messag += errors1.get(i).getERRMESS();
+            }
+        }
+
+
+
+        //SaveInBD(messag,result.getSTATUS());
         return result;
+    }
+
+    private static void SaveInBD(String result, int status)
+    {
+
+        result = Split(result);
+        GlobalVariables.Response = Split(GlobalVariables.Response);
+
+        String sq ="INSERT INTO exportfsslog"+
+                "(result, responsecode, status, disabilitydocument, disabilitynumber, requestcode, requestdate, requesttime, requesttype)" +
+                "VALUES"+
+                "('"+result+"','"+GlobalVariables.Response+"','"
+                +status+"', "+GlobalVariables.DisabilityDocument_id+", '"
+                +GlobalVariables.eln+"','"+GlobalVariables.Request+"', current_date, current_time, '"
+                +GlobalVariables.Type+"') RETURNING id;";
+
+        SQLConnect.SQL_UpdIns(sq);
+    }
+
+    private static String Split(String str)
+    {
+        String[] arrstr;
+        arrstr = str.split("'");
+        str="";
+        for (int i=0;i<arrstr.length;i++ ) {
+            str += arrstr[i];
+        }
+        return str;
     }
 }

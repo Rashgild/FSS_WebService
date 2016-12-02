@@ -79,6 +79,7 @@ public class VerifyAndDecrypt {
             xmlCipher.setKEK(key);
 
         xmlCipher.doFinal(doc2, encryptedDataElement);
+        is2.close();
         return doc2;
     }
 

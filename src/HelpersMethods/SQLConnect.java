@@ -41,6 +41,29 @@ public class SQLConnect {
         }
             //Logger.getLogger(WebServiceImpl.class.getName()).log(Level.SEVERE, null, ex);}
         return result1;
+    }
 
+    public static ResultSet SQL_UpdIns (String s)
+    {
+        Connection connection = null;
+        ResultSet res= null;
+        try {
+            Class.forName("org.postgresql.Driver");
+            //System.out.println("Драйвер подключен");
+            connection = DriverManager.getConnection(GlobalVariables.urlDB[1],
+                    GlobalVariables.nameDB[1], GlobalVariables.passwordDB[1]);
+
+            //System.out.println("Соединение установлено");
+            Statement statement = null;
+            statement = connection.createStatement();
+
+            res  =   statement.executeQuery(s);
+            connection.close();
+            return res;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            }
+        return res;
     }
 }
