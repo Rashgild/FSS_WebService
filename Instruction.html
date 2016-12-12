@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Инструкция</title>
+
+    <style>
+        .ex {
+            border: dashed 1px #634F36;
+            background: #fffff5;
+            font-family: "Courier New", Courier, monospace;
+            font-size: large;
+            padding: 7px;
+            font-size: 80%;
+            margin: 0 0 1em;
+        }
+    </style>
+</head>
+<body>
+
+
+<br> _________
+
+<br>Установка:
+
+<br>-Установить jdk1.7.021 x86
+<br>-cmd > cd %dir_с_jcp.1.0.54%\lib
+<br>> Install.bat "C:\%ProgramFiles%\Java\jdk1.7.0_21"
+<br>> Видим крокозябры и ждем "Script SUCCEEDED" :D
+<br>> controlPane.bat "C:\%ProgramFiles%\Java\jdk1.7.0_21" > goto 1.1)
+
+<br>--
+
+<br>1.1)
+<br>В HDImageStore -> Создать
+<br>Имя: Нужное имя, например, test_mo_2. Хранится в GlobalVariables.CertAliasMO[1]
+<br>Ключ обмена
+<br>Пароль: 123456
+<br>Аутентификация клиента
+<br>-> Создать > Base64 > Сохранить.
+<br>1.2)
+<br>Сохраненный файл открыть текстовым редактором, скопировать всё > переходим на
+<br>https://www.cryptopro.ru/certsrv/certrqxt.asp > вставляем скопированное > Выдать >
+<br>Base-64 > Загрузить сертификат.
+<br>1.3)
+<br>Кликнуть по созданному контейнеру в HDImageStore (test_mo_2) > Добавить >
+<br>Найти-открыть сохраненный сертификат
+<br>
+<br>
+<br>2) Хранилища сертификатов. Создать новое (C:\Storage\Stor\ , пароль 123456)
+<br>Добавть сертификат fss.cer
+<br>
+<br>_________
+<br>
+<br>-Скопировать папку Security в C:\%ProgramFiles%\Java\jdk1.7.0_21\jre\lib с заменой
+<br>-В C:\%ProgramFiles%\Java\jdk1.7.0_21\jre\lib найти джарники
+JCPxml.jar+,
+xmlsec,
+commos-logging,
+serializer,
+XMLDSigRI+,
+wss4j,xalan
+и удалить нахрен!
+
+
+<br>------------------
+<br>для создания trusted cacert надо
+<br>cmd -> cd C:\Program Files (x86)\Java\jdk1.7.0_21\bin ->
+<br>keytool -keystore "C:\Mycacert" -import -trustcacerts -alias "MyAlias" -file "C:\My.crt"
+
+
+<pre>
+<p class="ex">
+<font size="4" color="#008b8b">
+<br>
+&lt;?xml version="1.0" encoding="utf8"?&gt
+    &lt;ROWSET&gt
+        &lt;ROW "ELN_123456789123"&gt
+            &lt;SNILS&gt&lt;/SNILS&gt
+            &lt;SURNAME&gt&lt;/SURNAME&gt
+            &lt;NAME&gt&lt;/NAME&gt
+            &lt;PATRONIMIC&gt&lt;/PATRONIMIC&gt
+            &lt;BOZ_FLAG&gt&lt;/BOZ_FLAG&gt
+            &lt;LPU_EMPLOYER&gt&lt;/LPU_EMPLOYER&gt
+            &lt;LPU_EMPL_FLAG&gt&lt;/LPU_EMPL_FLAG&gt
+            &lt;LN_CODE&gt&lt;/LN_CODE&gt
+            &lt;PREV_LN_CODE&gt&lt;/PREV_LN_CODE&gt
+            &lt;PRIMARY_FLAG&gt&lt;/PRIMARY_FLAG&gt
+            &lt;DUPLICATE_FLAG&gt&lt;/DUPLICATE_FLAG&gt
+            &lt;LN_DATE&gt&lt;/LN_DATE&gt
+            &lt;LPU_NAME&gt&lt;/LPU_NAME&gt
+            &lt;LPU_ADDRESS&gt&lt;/LPU_ADDRESS&gt
+            &lt;LPU_OGRN&gt&lt;/LPU_OGRN&gt
+            &lt;BIRTHDAY&gt&lt;/BIRTHDAY&gt
+            &lt;GENDER&gt&lt;/GENDER&gt
+            &lt;REASON1&gt&lt;/REASON1&gt
+            &lt;REASON2&gt&lt;/REASON2&gt
+            &lt;REASON3&gt&lt;/REASON3&gt
+            &lt;DIAGNOS&gt&lt;/DIAGNOS&gt
+            &lt;PARENT_CODE&gt&lt;/PARENT_CODE&gt
+            &lt;DATE1&gt&lt;/DATE1&gt
+            &lt;DATE2&gt&lt;/DATE2&gt
+            &lt;VOUCHER_NO&gt&lt;/VOUCHER_NO&gt
+            &lt;VOUCHER_OGRN&gt&lt;/VOUCHER_OGRN&gt
+            &lt;SERV1_AGE&gt&lt;/SERV1_AGE&gt
+            &lt;SERV1_MM&gt&lt;/SERV1_MM&gt
+            &lt;SERV1_RELATION_CODE&gt&lt;/SERV1_RELATION_CODE&gt
+            &lt;SERV1_FIO&gt&lt;/SERV1_FIO&gt
+            &lt;SERV1_DT1&gt&lt;/SERV1_DT1&gt
+            &lt;SERV1_DT2&gt&lt;/SERV1_DT2&gt
+            &lt;SERV2_AGE&gt&lt;/SERV2_AGE&gt
+            &lt;SERV2_MM&gt&lt;/SERV2_MM&gt
+            &lt;SERV2_RELATION_CODE&gt&lt;/SERV2_RELATION_CODE&gt
+            &lt;SERV2_FIO&gt&lt;/SERV2_FIO&gt
+            &lt;SERV2_DT1&gt&lt;/SERV2_DT1&gt
+            &lt;SERV2_DT2&gt&lt;/SERV2_DT2&gt
+            &lt;PREGN12W_FLAG&gt&lt;/PREGN12W_FLAG&gt
+            &lt;HOSPITAL_DT1&gt&lt;/HOSPITAL_DT1&gt
+            &lt;HOSPITAL_DT2&gt&lt;/HOSPITAL_DT2&gt
+            &lt;HOSPITAL_BREACH wsu:Id="ELN_123456789123_1_doc"&gt
+                &lt;HOSPITAL_BREACH_CODE&gt&lt;/HOSPITAL_BREACH_CODE&gt
+                &lt;HOSPITAL_BREACH_CODE&gt&lt;/HOSPITAL_BREACH_CODE&gt
+            &lt;/HOSPITAL_BREACH&gt
+            &lt;MSE_DT1&gt&lt;/MSE_DT1&gt
+            &lt;MSE_DT2&gt&lt;/MSE_DT2&gt
+            &lt;MSE_DT3&gt&lt;/MSE_DT3&gt
+            &lt;MSE_INVALID_GROUP&gt&lt;/MSE_INVALID_GROUP&gt
+            &lt;LN_RESULT wsu:Id="ELN_123456789123_2_doc"&gt
+                &lt;MSE_RESULT&gt&lt;/MSE_RESULT&gt
+                &lt;OTHER_STATE_DT&gt&lt;/OTHER_STATE_DT&gt
+                &lt;RETURN_DATE_LPU&gt&lt;/RETURN_DATE_LPU&gt
+                &lt;NEXT_LN_CODE&gt&lt;/NEXT_LN_CODE&gt
+            &lt;/LN_RESULT&gt
+            &lt;LN_STATE&gt&lt;/LN_STATE&gt
+            &lt;LN_HASH&gt&lt;/LN_HASH&gt
+            &lt;TREAT_PERIODS&gt
+                &lt;TREAT_FULL_PERIOD wsu:Id="ELN_123456789123_2+n_vk"&gt
+                &lt;TREAT_CHAIRMAN_ROLE&gt&lt;/TREAT_CHAIRMAN_ROLE&gt
+                &lt;TREAT_CHAIRMAN&gt&lt;/TREAT_CHAIRMAN&gt
+                    &lt;TREAT_PERIOD wsu:Id="ELN_123456789123_2+n_doc"&gt
+                        &lt;TREAT_DT1&gt&lt;/TREAT_DT1&gt
+                        &lt;TREAT_DT2&gt&lt;/TREAT_DT2&gt
+                        &lt;TREAT_DOCTOR_ROLE&gt&lt;/TREAT_DOCTOR_ROLE&gt
+                        &lt;TREAT_DOCTOR&gt&lt;/TREAT_DOCTOR&gt
+                    &lt;/TREAT_PERIOD&gt
+                &lt;/TREAT_FULL_PERIOD&gt
+            &lt;/TREAT_PERIODS&gt
+        &lt;/ROW&gt
+    &lt;/ROWSET&gt
+&lt;/xml&gt
+    </font>
+    </p>
+</pre>
+
+<br> <H1>TODO-LIST</H1>
+    <h3>Реализация классов-типов <input type="checkbox" checked> </h3>
+    <h3>Реализация взаимодействия с базой данных <input type="checkbox" checked></h3>
+    <h3>Формаирование каркаса xml и заполнения его данными <input type="checkbox" checked></h3>
+    <h3>Пакетное формарование xml-файла <input type="checkbox" checked></h3>
+    <h3>Подисание полного пакета xml-файла <input type="checkbox"></h3>
+    <h3>Шифрование пакета xml-фалйа <input type="checkbox"></h3>
+    <h3>Отправка, получение, расшифровка и проверка подписи <input type="checkbox" ></h3>
+    <h3>Реализация методов веб-сервиса <input type="checkbox"></h3>
+    <h3>Запуск проекта не севере и его тестирование <input type="checkbox"></h3>
+</body>
+</html>
