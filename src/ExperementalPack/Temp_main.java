@@ -4,11 +4,10 @@ import HelpersMethods.Doc;
 import HelpersMethods.GlobalVariables;
 import HelpersMethods.SQLConnect;
 import HelpersMethods.SQLStoreQuer;
+import WS_ClientToFss.SignAndEncrypt.Encrypt;
 import WS_ClientToFss.SignAndEncrypt.Sign;
-import WS_ClientToFss.XmlFileLnLpu;
 import org.w3c.dom.Document;
 import ru.CryptoPro.JCPxml.xmldsig.JCPXMLDSigInit;
-import ru.ibs.fss.ln.ws.fileoperationsln.PrParseFilelnlpuElement;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -33,19 +32,19 @@ public class Temp_main {
         JCPXMLDSigInit.init();
         setUp();
         InsertSkel0ton();
-
-
     }
 
 
     private static Parser parser;
     private static File file;
+
     public static void setUp() throws Exception {
         parser = new JaxbParser();
         file = new File("person.xml");
     }
 
     public static void InsertSkel0ton() throws Exception {
+
         GlobalVariables.GetConfiguration();
         ResultSet rs = SQLConnect.SQL_Select(SQLStoreQuer.Query_SkeletonSelect());
 
@@ -209,9 +208,9 @@ public class Temp_main {
 
 
         //prParseFilelnlpu.setDs("http://www.w3.org/2000/09/xmldsig#");
-       // prParseFilelnlpu.setWsu("http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd");
-       /* prParseFilelnlpu.setAttrib("http://ru/ibs/fss/ln/ws/FileOperationsLn.wsdl");
-        prParseFilelnlpu.setDs("http://www.w3.org/2000/09/xmldsig#");
+        // prParseFilelnlpu.setWsu("http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd");
+        prParseFilelnlpu.setFil("http://ru/ibs/fss/ln/ws/FileOperationsLn.wsdl");
+       /*prParseFilelnlpu.setDs("http://www.w3.org/2000/09/xmldsig#");
         prParseFilelnlpu.setAttrib3("http://schemas.xmlsoap.org/soap/envelope/");
         prParseFilelnlpu.setAttrib4("http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
         prParseFilelnlpu.setWsu("http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd");
@@ -238,6 +237,7 @@ public class Temp_main {
         org.apache.xml.security.Init.init();
         parser.saveObject(file,prParseFilelnlpu);
 
+
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document document = db.newDocument();
@@ -248,7 +248,7 @@ public class Temp_main {
         MessageFactory mf = MessageFactory.newInstance();
         SOAPMessage message = mf.createMessage();
         // message.writeTo(System.out);
-       // System.out.println("-------\n");
+        // System.out.println("-------\n");
         message= Doc.DocToSOAP(document);
         //String s = Doc.SoapMessageToString(message);
 
@@ -260,47 +260,80 @@ public class Temp_main {
         SOAPBody soapBody = soapEnv.getBody();
         soapBody.addDocument(document);
 
-       /* soapEnv.addNamespaceDeclaration("ds","http://www.w3.org/2000/09/xmldsig#");
+        soapEnv.addNamespaceDeclaration("ds","http://www.w3.org/2000/09/xmldsig#");
         soapEnv.addNamespaceDeclaration("wsse","http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
         soapEnv.addNamespaceDeclaration("wsu","http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd");
         soapEnv.addNamespaceDeclaration("xsd","http://www.w3.org/2001/XMLSchema");
         soapEnv.addNamespaceDeclaration("xsi","http://www.w3.org/2001/XMLSchema-instance");
-        soapEnv.addNamespaceDeclaration("fil","http://ru/ibs/fss/ln/ws/FileOperationsLn.wsdl");*/
+        soapEnv.addNamespaceDeclaration("fil","http://ru/ibs/fss/ln/ws/FileOperationsLn.wsdl");
 
 
-        GlobalVariables.eln="1010101010";
+
+
+//Signation
         HOSPITAL_BREACH hospital_breach = new HOSPITAL_BREACH();
-        message2.writeTo(System.out);
+        LN_RESULT ln_result = new LN_RESULT();
+        Doc.SaveSOAPToXML("my.xml",message2);
+        for(int i =0;i<rows.size();i++){
 
-          /*  message2 = Sign.SignationByParametrs("http://eln.fss.ru/actor/mo/1037726008110/ELN_1010101010",
-                    "#ELN_1010101010", message2);*/
+            //System.out.println(rows.get(i).getLncode()+"|"+hospital_breach.getAttributeId());
 
-       // Doc.SaveSOAPToXML("my.xml",message2);
-        message2 =Sign.SignationByParametrs2("http://eln.fss.ru/actor/doc/"+GlobalVariables.eln+"_3_doc",
-                    "#ELN_"+GlobalVariables.eln+"_3_doc",message2);
-        message2.writeTo(System.out);
-       /* for(int i =0;i<rows.size();i++){
+            GlobalVariables.eln=rows.get(i).getLncode();
+            //Общая подись, всего ЛН
+            message2= Sign.SignationByParametrs2("http://eln.fss.ru/actor/mo/"+GlobalVariables.ogrnMo[1]+"/"+rows.get(i).getAttribId(),
+                    "#"+rows.get(i).getAttribId(),message2);
+            Doc.SaveSOAPToXML("my.xml",message2);
             List<HOSPITAL_BREACH>hospital_breaches= rows.get(i).getHospitalbreach();
+            List<LN_RESULT>ln_results = rows.get(i).getLnresult();
             hospital_breach = hospital_breaches.get(0);
+            ln_result = ln_results.get(0);
 
-
-            System.setProperty("javax.net.ssl.trustStore",GlobalVariables.PathToSSLcert[1]);//КОНФ
-            System.setProperty("javax.net.ssl.trustStorePassword", "123456");
-
-           // message = XmlFileLnLpu.StartSetxmlFileLn();
-            System.out.println(hospital_breach.getAttributeId()+" + "+ hospital_breaches.size()+" | "+rows.get(i).getLncode());
-            message2.writeTo(System.out);
-
-
-
-          *//* if(hospital_breach.getAttributeId()!=null)
+            //Подпись "Результатов"
+            if(ln_result.getAttribId()!=null)
             {
+                message2= Sign.SignationByParametrs2("http://eln.fss.ru/actor/mo/"+GlobalVariables.ogrnMo[1]+"/"+ln_result.getAttribId()+"/",
+                        "#"+ln_result.getAttribId(),message2);
+                Doc.SaveSOAPToXML("my.xml",message2);
+            }
 
-        message2= Sign.SignationByParametrs("http://eln.fss.ru/actor/mo/1037726008110/ELN_1010101010",
-                       "#ELN_1010101010_1_doc",message2);
+            //Подпись "Нарушений"
+            if(hospital_breach.getAttributeId()!=null)
+            {
+                message2= Sign.SignationByParametrs2("http://eln.fss.ru/actor/mo/"+GlobalVariables.ogrnMo[1]+"/"+hospital_breach.getAttributeId()+"/",
+                        "#"+hospital_breach.getAttributeId(),message2);
+                Doc.SaveSOAPToXML("my.xml",message2);
+            }
 
-                message2.writeTo(System.out);
-            }*//*
-        }*/
+            TREAT_FULL_PERIOD treat_full_period1 = new TREAT_FULL_PERIOD();
+            List<TREAT_FULL_PERIOD>treat_full_periods1 = rows.get(i).getTREAT_PERIODS();
+
+            TREAT_PERIOD treat_period1 = new TREAT_PERIOD();
+            //Подпись ВК
+            for(int j=0;j<treat_full_periods1.size();j++) {
+                treat_full_period1 = treat_full_periods1.get(j);
+                if(treat_full_period1.getAttributevk()!=null) {
+                    message2= Sign.SignationByParametrs2("http://eln.fss.ru/actor/mo/"+GlobalVariables.ogrnMo[1]+"/"+treat_full_period1.getAttributevk()+"/",
+                            "#"+treat_full_period1.getAttributevk(),message2);
+                    Doc.SaveSOAPToXML("my.xml",message2);
+                }
+
+                List<TREAT_PERIOD> treat_periods1 = treat_full_periods1.get(j).getTreat_period();
+                //Подпись доктора
+                for (int k=0;k<treat_periods1.size();k++) {
+                    treat_period1 = treat_periods1.get(k);
+                    if(treat_period1.getAttribId()!=null) {
+                        message2= Sign.SignationByParametrs2("http://eln.fss.ru/actor/mo/"+GlobalVariables.ogrnMo[1]+"/"+treat_period1.getAttribId()+"/",
+                                "#"+treat_period1.getAttribId(),message2);
+                        Doc.SaveSOAPToXML("my.xml",message2);
+                    }
+                }
+            }
+        }
+
+        mf = MessageFactory.newInstance();
+        SOAPMessage NewMessg = mf.createMessage();
+        NewMessg= Encrypt.CreateXMLAndEncrypt(NewMessg, "my.xml");
+        Doc.SaveSOAPToXML("LNCrypted.xml",NewMessg);
+
     }
 }

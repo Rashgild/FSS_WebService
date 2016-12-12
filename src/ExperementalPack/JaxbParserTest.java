@@ -1,21 +1,15 @@
 package ExperementalPack;
 
 import HelpersMethods.Doc;
-import HelpersMethods.GlobalVariables;
-import HelpersMethods.SQLConnect;
-import HelpersMethods.SQLStoreQuer;
-import WS_ClientToFss.XmlFileLnLpu;
 import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Document;
-import ru.CryptoPro.JCPxml.xmldsig.JCPXMLDSigInit;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.soap.MessageFactory;
-import javax.xml.soap.SOAPMessage;
+import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.File;
-import java.sql.ResultSet;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +27,7 @@ public class JaxbParserTest {
     }
 
 
-   @Test
+  /* @Test
    public void InsertSkeleton() throws Exception {
        GlobalVariables.GetConfiguration();
        ResultSet rs = SQLConnect.SQL_Select(SQLStoreQuer.Query_SkeletonSelect());
@@ -197,7 +191,7 @@ public class JaxbParserTest {
 
        
 
-       prParseFilelnlpu.setAttrib("http://ru/ibs/fss/ln/ws/FileOperationsLn.wsdl");
+       prParseFilelnlpu.setFil("http://ru/ibs/fss/ln/ws/FileOperationsLn.wsdl");
        prParseFilelnlpu.setDs("http://www.w3.org/2000/09/xmldsig#");
        prParseFilelnlpu.setAttrib3("http://schemas.xmlsoap.org/soap/envelope/");
        prParseFilelnlpu.setAttrib4("http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
@@ -255,14 +249,14 @@ public class JaxbParserTest {
 
            if(hospital_breach.getAttributeId()!=null)
            {
-            /*   if(!JCPXMLDSigInit.isInitialized()) {
-               }*/
+            *//*   if(!JCPXMLDSigInit.isInitialized()) {
+               }*//*
                JCPXMLDSigInit.init();
-              /* message= Sign.SignationByParametrs("http://eln.fss.ru/actor/mo/"+GlobalVariables.ogrnMo[1]+"/ELN_"+rows.get(i).getLncode(),
-                       "#"+hospital_breach.getAttributeId(),message);*/
+              *//* message= Sign.SignationByParametrs("http://eln.fss.ru/actor/mo/"+GlobalVariables.ogrnMo[1]+"/ELN_"+rows.get(i).getLncode(),
+                       "#"+hospital_breach.getAttributeId(),message);*//*
 
-              /* message= Sign.SignationByParametrs("http://eln.fss.ru/actor/mo/"+101010+"/ELN_"+rows.get(i).getLncode(),
-                       "#"+hospital_breach.getAttributeId(),message);*/
+              *//* message= Sign.SignationByParametrs("http://eln.fss.ru/actor/mo/"+101010+"/ELN_"+rows.get(i).getLncode(),
+                       "#"+hospital_breach.getAttributeId(),message);*//*
 
              // XmlFileLnLpu.SignationMessage(message);
                //SignationMessage
@@ -271,14 +265,33 @@ public class JaxbParserTest {
 
                message.writeTo(System.out);
            }
-          /* message= Sign.SignationByParametrs("http://eln.fss.ru/actor/mo/"+GlobalVariables.ogrnMo[1]+"/ELN_"+GlobalVariables.eln,
-                   "#ELN_"+GlobalVariables.eln,message);*/
+          *//* message= Sign.SignationByParametrs("http://eln.fss.ru/actor/mo/"+GlobalVariables.ogrnMo[1]+"/ELN_"+GlobalVariables.eln,
+                   "#ELN_"+GlobalVariables.eln,message);*//*
        }
 
-   }
+   }*/
 
-   public static void Wht(Class clas)
-   {
+    @Test
+   public void Wht() throws IOException, TransformerException, ParserConfigurationException, JAXBException {
+
+       PrParseFileLnLpu2.pXmlFile2 pXmlFile2 = new PrParseFileLnLpu2.pXmlFile2();
+       List<PrParseFileLnLpu2.pXmlFile2> pXmlFile2s = new ArrayList<>();
+       pXmlFile2s.add(pXmlFile2);
+
+       PrParseFileLnLpu2.Reqest2 reqest2 = new PrParseFileLnLpu2.Reqest2();
+       reqest2.setOgrn("10101010");
+       reqest2.setpXmlFiles(pXmlFile2s);
+       List<PrParseFileLnLpu2.Reqest2> reqest2s = new ArrayList<>();
+       reqest2s.add(reqest2);
+
+
+       PrParseFileLnLpu2 prParseFileLnLpu2 = new PrParseFileLnLpu2();
+       prParseFileLnLpu2.setRequests(reqest2s);
+       List<PrParseFileLnLpu2>prParseFileLnLpu2s = new ArrayList<>();
+       prParseFileLnLpu2s.add(prParseFileLnLpu2);
+
+       Document document = parser.ObjToSoap(prParseFileLnLpu2);
+       Doc.writeDoc(document,System.out);
 
 
 

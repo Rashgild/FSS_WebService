@@ -8,7 +8,6 @@ import java.util.List;
 
 //@XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "pXmlFile")
-//@XmlType(propOrder = {"ROWSET"})
 public class pXmlFile {
     protected List<ROWSET> rowset;
 
@@ -16,10 +15,8 @@ public class pXmlFile {
     public List<ROWSET> getRowset() {
         return rowset;
     }
-
     @XmlElement(name = "ROWSET")
     public void setRowset(List<ROWSET> rowset) {
         this.rowset = rowset;
     }
-
 }
