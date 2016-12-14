@@ -93,7 +93,7 @@ public class VerifyAndDecrypt {
         soapBody.setIdAttributeNode(idAttr, true);
 
         final Element wssecontext = doc.createElementNS(null, "namespaceContext");
-        wssecontext.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:wsse", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
+        wssecontext.setAttributeNS("http://www.w3.org/2000/ds/", "ds:wsse", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
 
         Iterator allHeaders = header.examineAllHeaderElements();
         Element binarySecurityTokenElement = null;

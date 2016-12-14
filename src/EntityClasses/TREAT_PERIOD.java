@@ -1,4 +1,4 @@
-package ExperementalPack;
+package EntityClasses;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -11,19 +11,19 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "TREAT_FULL_PERIOD")
 @XmlType(propOrder = {"treatdt1","treatdt2","treatdoctorrole","treatdoctor"})
 public class TREAT_PERIOD {
-    protected String attribId;
+    protected String AttribId;
     protected String treatdt1;
     protected String treatdt2;
     protected String treatdoctorrole;
     protected String treatdoctor;
 
     public String getAttribId() {
-        return attribId;
+        return AttribId;
     }
 
     @XmlAttribute(name = "Id", namespace = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd")
     public void setAttribId(String attribId) {
-        this.attribId = attribId;
+        this.AttribId = attribId;
     }
 
     public String getTreatdt1() {

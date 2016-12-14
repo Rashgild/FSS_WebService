@@ -1,5 +1,7 @@
 package HelpersMethods;
 
+import EntityClasses.PrParseFileLnLpu;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,7 +21,11 @@ public class GlobalVariables {
     //public static String ogrn="1023000836099";
     //public static String path="C:\\123\\";
 
+    public static PrParseFileLnLpu prparse;
 
+    public static int flag=0;
+    public static String DateFrom="10";
+    public static String DateTo="10";
     public static String DisabilityDocument_id="1010";
     public static String eln="0";
     public static String urlDB[];//="jdbc:postgresql://192.168.7.249:5432/riams";

@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Class-Path: JCPxml.jar XMLDSigRI.jar jdom-2.0.6.jar postgresql.jar wss
- 4j-1.6.3.jar xalan-2.7.1.jar xmlsec-1.5.0.jar slf4j-api-1.7.7.jar ser
- ializer-2.7.1.jar commons-logging-1.1.1.jar samples.jar samples-sourc
- es.jar junit-4.12.jar hamcrest-core-1.3.jar
-Main-Class: WS_ToMedOs.WebServicePublisher
-

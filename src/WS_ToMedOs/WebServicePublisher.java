@@ -20,7 +20,7 @@ public class WebServicePublisher {
     public static void main(String... args) throws IOException {
 
         System.out.println("------------------------------------------------------------");
-        //GlobalVariables.GetConfiguration();
+        GlobalVariables.GetConfiguration();
         try {
             GetConfiguration();
         }finally {

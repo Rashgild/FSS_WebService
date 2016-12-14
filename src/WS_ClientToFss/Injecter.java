@@ -4,9 +4,6 @@ import HelpersMethods.Doc;
 import HelpersMethods.GlobalVariables;
 import WS_ClientToFss.SignAndEncrypt.VerifyAndDecrypt;
 import org.w3c.dom.Document;
-import ru.ibs.fss.ln.ws.fileoperationsln.PrParseFilelnlpuElement;
-import ru.ibs.fss.ln.ws.fileoperationsln.ROWSET;
-import ru.ibs.fss.ln.ws.fileoperationsln.WSResult;
 
 import javax.xml.namespace.QName;
 import javax.xml.soap.SOAPException;
@@ -15,7 +12,6 @@ import javax.xml.ws.handler.MessageContext;
 import javax.xml.ws.handler.soap.SOAPHandler;
 import javax.xml.ws.handler.soap.SOAPMessageContext;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Set;
 
 /**
@@ -35,17 +31,28 @@ public class Injecter implements SOAPHandler<SOAPMessageContext> {
         if (isRequest) {
             SOAPMessage soapMsg = context.getMessage();
             //Запрос получения номера.
-            if (WhatTheFunc(soapMsg) == 1)//
+          /*  if (WhatTheFunc(soapMsg) == 1)//
             {
                 soapMsg = LNNNumbers.StartGetLNNumbers(soapMsg);
                 GlobalVariables.Type="LNNumbers";
                 context.setMessage(soapMsg);
                 //System.out.println("Номера!");
             }
+            */
             //Запрос на отправку ЛН.
             if (WhatTheFunc(soapMsg) == 2)//
             {
-                soapMsg= XmlFileLnLpu.StartSetxmlFileLn();
+                if(GlobalVariables.flag==1) {
+                    soapMsg = XmlFileLnLpuArray.Mess();
+                }
+
+                if(GlobalVariables.flag==2) {
+                    soapMsg= XmlFileLnLpu.StartSetxmlFileLn();
+                }
+
+                //soapMsg= XmlFileLnLpu.StartSetxmlFileLn();
+
+                //soapMsg.writeTo(System.out);
                 GlobalVariables.Type="XmlFileLnLpu";
                 context.setMessage(soapMsg);
             }
@@ -61,7 +68,12 @@ public class Injecter implements SOAPHandler<SOAPMessageContext> {
                     String curStringDate = new SimpleDateFormat("dd.MM.yyyy").format(curTime);
                     //msg.writeTo(System.out);
                     Doc.SaveSOAPToXML("Response"+curStringDate+".xml", msg);*/
+
+                   //TODO Ответ храним в переменной
                     GlobalVariables.Response = Doc.SoapMessageToString(msg);
+
+                    //System.out.println("\n-----\n");
+                    //msg.writeTo(System.out);
                     context.setMessage(msg);
 
                 } catch (Exception e) {

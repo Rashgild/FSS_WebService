@@ -1,10 +1,7 @@
 package WS_ClientToFss;
 
 import HelpersMethods.GlobalVariables;
-import ru.ibs.fss.ln.ws.fileoperationsln.FileOperationsLn;
-import ru.ibs.fss.ln.ws.fileoperationsln.FileOperationsLnImplService;
-import ru.ibs.fss.ln.ws.fileoperationsln.PrParseFilelnlpuElement;
-import ru.ibs.fss.ln.ws.fileoperationsln.ROWSET;
+import ru.ibs.fss.ln.ws.fileoperationsln.*;
 
 /**
  * Created by rkurbanov on 10.11.16.
@@ -15,15 +12,14 @@ public class ClientConnect {
 
         GlobalVariables.GetConfiguration();
 
-
         System.setProperty("javax.net.ssl.trustStore",GlobalVariables.PathToSSLcert[1]);//КОНФ
-        //System.setProperty("javax.net.ssl.trustStore","C:\\Program Files\\Java\\jdk1.7.0_21\\jre\\lib\\security\\cacerts1");
         System.setProperty("javax.net.ssl.trustStorePassword", "123456");
 
 
+     /*  SOAPMessage message = XmlFileLnLpu.StartSetxmlFileLn();*/
         //System.setProperty("javax.net.ssl.trustStore","C:\\cacert_my");//КОНФ
        // System.setProperty("javax.net.ssl.trustStorePassword", "123456");
-        FileOperationsLnImplService service = new  FileOperationsLnImplService();
+        FileOperationsLnImplService service = new FileOperationsLnImplService();
         FileOperationsLn start = service.getFileOperationsLnPort();
 
 
@@ -36,7 +32,11 @@ public class ClientConnect {
         PrParseFilelnlpuElement.PXmlFile pXmlFile= new PrParseFilelnlpuElement.PXmlFile();
         pXmlFile.setROWSET(rowset);
         prParseFilelnlpuElement.setPXmlFile(pXmlFile);
-        start.prParseFilelnlpu(prParseFilelnlpuElement);
+
+        WSResult s = start.prParseFilelnlpu(prParseFilelnlpuElement);
+        //List<WSResult> ss
+        //s.ge
+        System.out.println(s.getMESS());
 
         //System.out.println(GlobalVariables.ogrn[1]);
     }

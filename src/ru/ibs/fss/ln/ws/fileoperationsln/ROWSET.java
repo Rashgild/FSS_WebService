@@ -1626,7 +1626,7 @@ public class ROWSET {
         }
 
         /**
-         * Gets the value of the treatperiods property.
+         * Gets the value of the TREAT_PERIODS property.
          * 
          * @return
          *     possible object is
@@ -1638,7 +1638,7 @@ public class ROWSET {
         }
 
         /**
-         * Sets the value of the treatperiods property.
+         * Sets the value of the TREAT_PERIODS property.
          * 
          * @param value
          *     allowed object is

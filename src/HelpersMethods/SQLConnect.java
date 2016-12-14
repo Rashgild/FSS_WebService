@@ -27,7 +27,8 @@ public class SQLConnect {
                     GlobalVariables.nameDB[1], GlobalVariables.passwordDB[1]);
             //System.out.println("Соединение установлено");
             Statement statement = null;
-            statement = connection.createStatement();
+            statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
             //Выполним запрос
             result1 = statement.executeQuery(reqSQL);
             String N="";

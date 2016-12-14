@@ -1,4 +1,4 @@
-/*
+package EntityClasses;/*
 @XmlSchema(
         namespace = "d",
         xmlns = {
@@ -6,10 +6,8 @@
                 //@XmlNs(prefix = "123",namespaceURI = "")
         },
         elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)*/
-package ExperementalPack;
 
 
-import com.sun.xml.internal.txw2.annotation.XmlNamespace;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
@@ -23,7 +21,7 @@ import java.util.List;
 @XmlType(propOrder = {"treatchairmanrole","treatchairman","treat_period"})
 public class TREAT_FULL_PERIOD {
 
-    protected String attributevk;
+    protected String AttribIdVk;
     protected String treatchairmanrole;
     protected String treatchairman;
     protected List<TREAT_PERIOD> treat_period;
@@ -37,17 +35,17 @@ public class TREAT_FULL_PERIOD {
         this.treat_period = treat_period;
     }
 
-    public String getAttributevk() {
-        return attributevk;
+    public String getAttribIdVk() {
+        return AttribIdVk;
     }
 
-   //@XmlAttribute(name = "Id", namespace = "wasdasd")
-   @XmlAttribute(name = "Id", namespace = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd")
-   @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-   @XmlID
-   @XmlSchemaType(name = "ID")
-    public void setAttributevk(String attributevk) {
-        this.attributevk = attributevk;
+    //@XmlAttribute(name = "Id", namespace = "wasdasd")
+    @XmlAttribute(name = "Id", namespace = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd")
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlID
+    @XmlSchemaType(name = "ID")
+    public void setAttribIdVk(String attribIdVk) {
+        this.AttribIdVk = attribIdVk;
     }
 
     public String getTreatchairmanrole() {

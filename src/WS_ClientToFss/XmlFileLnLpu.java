@@ -37,9 +37,10 @@ public class XmlFileLnLpu {
             SOAPMessage soapMessage = CreateMessage();
             Doc.SaveSOAPToXML("LNSkeleton.xml",soapMessage);
 
+
             soapMessage = SignationMessage(soapMessage);
             Doc.SaveSOAPToXML("LNSigned.xml",soapMessage);
-
+            Doc.SaveSOAPToXML("1.xml",soapMessage);
 
             //TODO Подписанный запрос храним в переменной
             GlobalVariables.Request = Doc.SoapMessageToString(soapMessage);
@@ -47,6 +48,8 @@ public class XmlFileLnLpu {
             MessageFactory mf = MessageFactory.newInstance();
             SOAPMessage NewMessg = mf.createMessage();
             NewMessg= Encrypt.CreateXMLAndEncrypt(NewMessg, "LNSigned.xml");
+
+
             Doc.SaveSOAPToXML("LNCrypted.xml",NewMessg);
 
             /*soapMessage.writeTo(System.out);
@@ -61,7 +64,7 @@ public class XmlFileLnLpu {
         return soapMessage;
     }
 
-    private static SOAPMessage CreateMessage() throws SOAPException {
+    public static SOAPMessage CreateMessage() throws SOAPException {
 
         ResultSet ResultSQLRequest = SQLConnect.SQL_Select(SQLStoreQuer.SQL_Req());
         ResultSet ResultSQLRequest2 = SQLConnect.SQL_Select(SQLStoreQuer.SelectLNN());
@@ -84,7 +87,6 @@ public class XmlFileLnLpu {
         SOAPBody soapBody = soapEnv.getBody();
 
         /**
-         *
          * soapBody.addAttribute(name, "OGRN_"+ ClientMain.ogrn);
          */
         //soapBody.addAttribute(soapEnv.createName("Id"), "OGRN_"+GlobalVariables.ogrnMo[1]);
@@ -163,7 +165,7 @@ public class XmlFileLnLpu {
         SOAPElement SERV1_RELATION_CODE = ROW.addChildElement("SERV1_RELATION_CODE");
         SOAPElement SERV1_FIO = ROW.addChildElement("SERV1_FIO");
         SOAPElement SERV1_DT1 = ROW.addChildElement("SERV1_DT1");
-        SOAPElement SERV1_DT2 = ROW.addChildElement("SERV1_DT2");
+        SOAPElement SERV1_DT2 = ROW.addChildElement("SERV17_DT2");
         SOAPElement SERV2_AGE = ROW.addChildElement("SERV2_AGE");
         SOAPElement SERV2_MM = ROW.addChildElement("SERV2_MM");
         SOAPElement SERV2_RELATION_CODE = ROW.addChildElement("SERV2_RELATION_CODE");
@@ -555,7 +557,7 @@ public class XmlFileLnLpu {
         }
     }
 
-    private static SOAPMessage SignationMessage(SOAPMessage soapMessage)
+    public static SOAPMessage SignationMessage(SOAPMessage soapMessage)
     {
         try {
             soapMessage= Sign.SignationByParametrs("http://eln.fss.ru/actor/mo/"+GlobalVariables.ogrnMo[1]+"/ELN_"+GlobalVariables.eln,

@@ -74,79 +74,85 @@ wss4j,xalan
 <font size="4" color="#008b8b">
 <br>
 &lt;?xml version="1.0" encoding="utf8"?&gt
-    &lt;ROWSET&gt
-        &lt;ROW "ELN_123456789123"&gt
-            &lt;SNILS&gt&lt;/SNILS&gt
-            &lt;SURNAME&gt&lt;/SURNAME&gt
-            &lt;NAME&gt&lt;/NAME&gt
-            &lt;PATRONIMIC&gt&lt;/PATRONIMIC&gt
-            &lt;BOZ_FLAG&gt&lt;/BOZ_FLAG&gt
-            &lt;LPU_EMPLOYER&gt&lt;/LPU_EMPLOYER&gt
-            &lt;LPU_EMPL_FLAG&gt&lt;/LPU_EMPL_FLAG&gt
-            &lt;LN_CODE&gt&lt;/LN_CODE&gt
-            &lt;PREV_LN_CODE&gt&lt;/PREV_LN_CODE&gt
-            &lt;PRIMARY_FLAG&gt&lt;/PRIMARY_FLAG&gt
-            &lt;DUPLICATE_FLAG&gt&lt;/DUPLICATE_FLAG&gt
-            &lt;LN_DATE&gt&lt;/LN_DATE&gt
-            &lt;LPU_NAME&gt&lt;/LPU_NAME&gt
-            &lt;LPU_ADDRESS&gt&lt;/LPU_ADDRESS&gt
-            &lt;LPU_OGRN&gt&lt;/LPU_OGRN&gt
-            &lt;BIRTHDAY&gt&lt;/BIRTHDAY&gt
-            &lt;GENDER&gt&lt;/GENDER&gt
-            &lt;REASON1&gt&lt;/REASON1&gt
-            &lt;REASON2&gt&lt;/REASON2&gt
-            &lt;REASON3&gt&lt;/REASON3&gt
-            &lt;DIAGNOS&gt&lt;/DIAGNOS&gt
-            &lt;PARENT_CODE&gt&lt;/PARENT_CODE&gt
-            &lt;DATE1&gt&lt;/DATE1&gt
-            &lt;DATE2&gt&lt;/DATE2&gt
-            &lt;VOUCHER_NO&gt&lt;/VOUCHER_NO&gt
-            &lt;VOUCHER_OGRN&gt&lt;/VOUCHER_OGRN&gt
-            &lt;SERV1_AGE&gt&lt;/SERV1_AGE&gt
-            &lt;SERV1_MM&gt&lt;/SERV1_MM&gt
-            &lt;SERV1_RELATION_CODE&gt&lt;/SERV1_RELATION_CODE&gt
-            &lt;SERV1_FIO&gt&lt;/SERV1_FIO&gt
-            &lt;SERV1_DT1&gt&lt;/SERV1_DT1&gt
-            &lt;SERV1_DT2&gt&lt;/SERV1_DT2&gt
-            &lt;SERV2_AGE&gt&lt;/SERV2_AGE&gt
-            &lt;SERV2_MM&gt&lt;/SERV2_MM&gt
-            &lt;SERV2_RELATION_CODE&gt&lt;/SERV2_RELATION_CODE&gt
-            &lt;SERV2_FIO&gt&lt;/SERV2_FIO&gt
-            &lt;SERV2_DT1&gt&lt;/SERV2_DT1&gt
-            &lt;SERV2_DT2&gt&lt;/SERV2_DT2&gt
-            &lt;PREGN12W_FLAG&gt&lt;/PREGN12W_FLAG&gt
-            &lt;HOSPITAL_DT1&gt&lt;/HOSPITAL_DT1&gt
-            &lt;HOSPITAL_DT2&gt&lt;/HOSPITAL_DT2&gt
-            &lt;HOSPITAL_BREACH wsu:Id="ELN_123456789123_1_doc"&gt
-                &lt;HOSPITAL_BREACH_CODE&gt&lt;/HOSPITAL_BREACH_CODE&gt
-                &lt;HOSPITAL_BREACH_CODE&gt&lt;/HOSPITAL_BREACH_CODE&gt
-            &lt;/HOSPITAL_BREACH&gt
-            &lt;MSE_DT1&gt&lt;/MSE_DT1&gt
-            &lt;MSE_DT2&gt&lt;/MSE_DT2&gt
-            &lt;MSE_DT3&gt&lt;/MSE_DT3&gt
-            &lt;MSE_INVALID_GROUP&gt&lt;/MSE_INVALID_GROUP&gt
-            &lt;LN_RESULT wsu:Id="ELN_123456789123_2_doc"&gt
-                &lt;MSE_RESULT&gt&lt;/MSE_RESULT&gt
-                &lt;OTHER_STATE_DT&gt&lt;/OTHER_STATE_DT&gt
-                &lt;RETURN_DATE_LPU&gt&lt;/RETURN_DATE_LPU&gt
-                &lt;NEXT_LN_CODE&gt&lt;/NEXT_LN_CODE&gt
-            &lt;/LN_RESULT&gt
-            &lt;LN_STATE&gt&lt;/LN_STATE&gt
-            &lt;LN_HASH&gt&lt;/LN_HASH&gt
-            &lt;TREAT_PERIODS&gt
-                &lt;TREAT_FULL_PERIOD wsu:Id="ELN_123456789123_2+n_vk"&gt
-                &lt;TREAT_CHAIRMAN_ROLE&gt&lt;/TREAT_CHAIRMAN_ROLE&gt
-                &lt;TREAT_CHAIRMAN&gt&lt;/TREAT_CHAIRMAN&gt
-                    &lt;TREAT_PERIOD wsu:Id="ELN_123456789123_2+n_doc"&gt
-                        &lt;TREAT_DT1&gt&lt;/TREAT_DT1&gt
-                        &lt;TREAT_DT2&gt&lt;/TREAT_DT2&gt
-                        &lt;TREAT_DOCTOR_ROLE&gt&lt;/TREAT_DOCTOR_ROLE&gt
-                        &lt;TREAT_DOCTOR&gt&lt;/TREAT_DOCTOR&gt
-                    &lt;/TREAT_PERIOD&gt
-                &lt;/TREAT_FULL_PERIOD&gt
-            &lt;/TREAT_PERIODS&gt
-        &lt;/ROW&gt
-    &lt;/ROWSET&gt
+    &lt;prParseFilelnlpu&gt
+        &lt;request&gt
+            &lt;ogrn&gt&lt;/ogrn&gt
+            &lt;pXmlFile&gt
+                &lt;ROW "ELN_123456789123"&gt
+                    &lt;SNILS&gt&lt;/SNILS&gt
+                    &lt;SURNAME&gt&lt;/SURNAME&gt
+                    &lt;NAME&gt&lt;/NAME&gt
+                    &lt;PATRONIMIC&gt&lt;/PATRONIMIC&gt
+                    &lt;BOZ_FLAG&gt&lt;/BOZ_FLAG&gt
+                    &lt;LPU_EMPLOYER&gt&lt;/LPU_EMPLOYER&gt
+                    &lt;LPU_EMPL_FLAG&gt&lt;/LPU_EMPL_FLAG&gt
+                    &lt;LN_CODE&gt&lt;/LN_CODE&gt
+                    &lt;PREV_LN_CODE&gt&lt;/PREV_LN_CODE&gt
+                    &lt;PRIMARY_FLAG&gt&lt;/PRIMARY_FLAG&gt
+                    &lt;DUPLICATE_FLAG&gt&lt;/DUPLICATE_FLAG&gt
+                    &lt;LN_DATE&gt&lt;/LN_DATE&gt
+                    &lt;LPU_NAME&gt&lt;/LPU_NAME&gt
+                    &lt;LPU_ADDRESS&gt&lt;/LPU_ADDRESS&gt
+                    &lt;LPU_OGRN&gt&lt;/LPU_OGRN&gt
+                    &lt;BIRTHDAY&gt&lt;/BIRTHDAY&gt
+                    &lt;GENDER&gt&lt;/GENDER&gt
+                    &lt;REASON1&gt&lt;/REASON1&gt
+                    &lt;REASON2&gt&lt;/REASON2&gt
+                    &lt;REASON3&gt&lt;/REASON3&gt
+                    &lt;DIAGNOS&gt&lt;/DIAGNOS&gt
+                    &lt;PARENT_CODE&gt&lt;/PARENT_CODE&gt
+                    &lt;DATE1&gt&lt;/DATE1&gt
+                    &lt;DATE2&gt&lt;/DATE2&gt
+                    &lt;VOUCHER_NO&gt&lt;/VOUCHER_NO&gt
+                    &lt;VOUCHER_OGRN&gt&lt;/VOUCHER_OGRN&gt
+                    &lt;SERV1_AGE&gt&lt;/SERV1_AGE&gt
+                    &lt;SERV1_MM&gt&lt;/SERV1_MM&gt
+                    &lt;SERV1_RELATION_CODE&gt&lt;/SERV1_RELATION_CODE&gt
+                    &lt;SERV1_FIO&gt&lt;/SERV1_FIO&gt
+                    &lt;SERV1_DT1&gt&lt;/SERV1_DT1&gt
+                    &lt;SERV1_DT2&gt&lt;/SERV1_DT2&gt
+                    &lt;SERV2_AGE&gt&lt;/SERV2_AGE&gt
+                    &lt;SERV2_MM&gt&lt;/SERV2_MM&gt
+                    &lt;SERV2_RELATION_CODE&gt&lt;/SERV2_RELATION_CODE&gt
+                    &lt;SERV2_FIO&gt&lt;/SERV2_FIO&gt
+                    &lt;SERV2_DT1&gt&lt;/SERV2_DT1&gt
+                    &lt;SERV2_DT2&gt&lt;/SERV2_DT2&gt
+                    &lt;PREGN12W_FLAG&gt&lt;/PREGN12W_FLAG&gt
+                    &lt;HOSPITAL_DT1&gt&lt;/HOSPITAL_DT1&gt
+                    &lt;HOSPITAL_DT2&gt&lt;/HOSPITAL_DT2&gt
+                    &lt;HOSPITAL_BREACH wsu:Id="ELN_123456789123_1_doc"&gt
+                        &lt;HOSPITAL_BREACH_CODE&gt&lt;/HOSPITAL_BREACH_CODE&gt
+                        &lt;HOSPITAL_BREACH_CODE&gt&lt;/HOSPITAL_BREACH_CODE&gt
+                    &lt;/HOSPITAL_BREACH&gt
+                    &lt;MSE_DT1&gt&lt;/MSE_DT1&gt
+                    &lt;MSE_DT2&gt&lt;/MSE_DT2&gt
+                    &lt;MSE_DT3&gt&lt;/MSE_DT3&gt
+                    &lt;MSE_INVALID_GROUP&gt&lt;/MSE_INVALID_GROUP&gt
+                    &lt;LN_RESULT wsu:Id="ELN_123456789123_2_doc"&gt
+                        &lt;MSE_RESULT&gt&lt;/MSE_RESULT&gt
+                        &lt;OTHER_STATE_DT&gt&lt;/OTHER_STATE_DT&gt
+                        &lt;RETURN_DATE_LPU&gt&lt;/RETURN_DATE_LPU&gt
+                        &lt;NEXT_LN_CODE&gt&lt;/NEXT_LN_CODE&gt
+                    &lt;/LN_RESULT&gt
+                    &lt;LN_STATE&gt&lt;/LN_STATE&gt
+                    &lt;LN_HASH&gt&lt;/LN_HASH&gt
+                    &lt;TREAT_PERIODS&gt
+                        &lt;TREAT_FULL_PERIOD wsu:Id="ELN_123456789123_2+n_vk"&gt
+                        &lt;TREAT_CHAIRMAN_ROLE&gt&lt;/TREAT_CHAIRMAN_ROLE&gt
+                        &lt;TREAT_CHAIRMAN&gt&lt;/TREAT_CHAIRMAN&gt
+                            &lt;TREAT_PERIOD wsu:Id="ELN_123456789123_2+n_doc"&gt
+                                &lt;TREAT_DT1&gt&lt;/TREAT_DT1&gt
+                                &lt;TREAT_DT2&gt&lt;/TREAT_DT2&gt
+                                &lt;TREAT_DOCTOR_ROLE&gt&lt;/TREAT_DOCTOR_ROLE&gt
+                                &lt;TREAT_DOCTOR&gt&lt;/TREAT_DOCTOR&gt
+                            &lt;/TREAT_PERIOD&gt
+                        &lt;/TREAT_FULL_PERIOD&gt
+                    &lt;/TREAT_PERIODS&gt
+                &lt;/ROW&gt
+            &lt;/ROWSET&gt
+            &lt;/pXmlFile&gt
+        &lt;/request&gt
+    &lt;/prParseFilelnlpu&gt
 &lt;/xml&gt
     </font>
     </p>

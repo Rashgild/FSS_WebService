@@ -1,8 +1,6 @@
-package ExperementalPack;
+package EntityClasses;
 
 import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.List;
 
 /**
@@ -60,73 +58,81 @@ import java.util.List;
         "lnresult",
         "lnstate",
         "lnhash"
+
 })
 public class ROW {
 
 
-    protected String AttribId;
-    protected String snils;
-    protected String surname;
-    protected String name;
-    protected String patronimic;
-    protected int bozflag;
-    protected String lpuemployer;
-    protected int lpuemplflag;
-    protected String lncode;
-    protected String prevlncode;
-    protected int primaryflag;
-    protected int duplicateflag;
-    protected String lndate;
-    protected String lpuname;
-    protected String lpuaddress;
-    protected String lpuogrn;
-    protected String birthday;
-    protected int gender;
-    protected String reason1;
-    protected String reason2;
-    protected String reason3;
-    protected String diagnos;
-    protected String parentcode;
-    protected String date1;
-    protected String date2;
-    protected String voucherno;
-    protected String voucherogrn;
-    protected String serv1AGE;
-    protected Integer serv1MM;
-    protected String serv1RELATIONCODE;
-    protected String serv1FIO;
-    protected String serv1DT1;
-    protected String serv1DT2;
-    protected String serv2AGE;
-    protected Integer serv2MM;
-    protected String serv2RELATIONCODE;
-    protected String serv2FIO;
-    protected String serv2DT1;
-    protected String serv2DT2;
-    protected String pregn12WFLAG;
-    protected String hospitaldt1;
-    protected String hospitaldt2;
+    private String AttribId;
+    private String snils;
+    private String surname;
+    private String name;
+    private String patronimic;
+    private int bozflag;
+    private String lpuemployer;
+    private int lpuemplflag;
+    private String lncode;
+    private String prevlncode;
+    private int primaryflag;
+    private int duplicateflag;
+    private String lndate;
+    private String lpuname;
+    private String lpuaddress;
+    private String lpuogrn;
+    private String birthday;
+    private int gender;
+    private String reason1;
+    private String reason2;
+    private String reason3;
+    private String diagnos;
+    private String parentcode;
+    private String date1;
+    private String date2;
+    private String voucherno;
+    private String voucherogrn;
+    private String serv1AGE;
+    private Integer serv1MM;
+    private String serv1RELATIONCODE;
+    private String serv1FIO;
+    private String serv1DT1;
+    private String serv1DT2;
+    private String serv2AGE;
+    private Integer serv2MM;
+    private String serv2RELATIONCODE;
+    private String serv2FIO;
+    private String serv2DT1;
+    private String serv2DT2;
+    private String pregn12WFLAG;
+    private String hospitaldt1;
+    private String hospitaldt2;
     // @XmlElement(name = "HOSPITAL_BREACH")
-    protected List<HOSPITAL_BREACH>hospitalbreach;
-    protected String msedt1;
-    protected String msedt2;
-    protected String msedt3;
-    protected Integer mseinvalidgroup;
+    private List<HOSPITAL_BREACH>hospitalbreach;
+    private String msedt1;
+    private String msedt2;
+    private String msedt3;
+    private Integer mseinvalidgroup;
     //@XmlElement(name = "TREAT_PERIODS", required = true)
-    protected List<LN_RESULT> lnresult;
-    protected String lnstate;
-    protected String lnhash;
-    protected List<TREAT_FULL_PERIOD> TREAT_PERIODS;
+    private List<LN_RESULT> lnresult;
+    private String lnstate;
+    private String lnhash;
+    private List<TREAT_FULL_PERIOD> TREAT_PERIODS;
+
+    private int IdDD;
+
+    public int getIdDD() {
+        return IdDD;
+    }
+    @XmlAttribute(name = "ddid", namespace = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd")
+    public void setIdDD(int idDD) {
+        IdDD = idDD;
+    }
 
     public List<TREAT_FULL_PERIOD> getTREAT_PERIODS() {
         return TREAT_PERIODS;
     }
-
-
     public String getAttribId() {
         return AttribId;
     }
-
 
     @XmlAttribute(name = "Id", namespace = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd")
     public void setAttribId(String attribId) {
@@ -506,4 +512,98 @@ public class ROW {
     public void setLnhash(String lnhash) {
         this.lnhash = lnhash;
     }
+
+
+    @XmlRootElement(name = "ROW")
+    @XmlType(propOrder = {"hospitalbreachcode","hospitalbreachdt"})
+    @XmlAccessorType(XmlAccessType.FIELD)
+    public static class HOSPITAL_BREACH {
+
+        @XmlAttribute(name = "Id", namespace = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd")
+        protected String AttributeId;
+        @XmlElement(name = "HOSPITAL_BREACH_CODE")
+        private String hospitalbreachcode;
+        @XmlElement(name = "HOSPITAL_BREACH_DT")
+        private String hospitalbreachdt;
+
+        public String getAttributeId() {
+            return AttributeId;
+        }
+
+
+        public void setAttributeId(String attributeId) {
+            AttributeId = attributeId;
+        }
+
+        public String getHospitalbreachcode() {
+            return hospitalbreachcode;
+        }
+
+
+        public void setHospitalbreachcode(String hospitalbreachcode) {
+            if(hospitalbreachcode!=null && !hospitalbreachcode.equals("")) this.hospitalbreachcode = hospitalbreachcode;
+        }
+
+        public String getHospitalbreachdt() {
+            return hospitalbreachdt;
+        }
+
+
+        public void setHospitalbreachdt(String hospitalbreachdt) {
+            if(hospitalbreachdt!=null && !hospitalbreachdt.equals("")) this.hospitalbreachdt = hospitalbreachdt;
+        }
+    }
+
+    @XmlRootElement(name = "ROW")
+    @XmlType(propOrder = {"mseresult","otherstatedt","returndatelpu","nextlncode"})
+    public static class LN_RESULT {
+
+        protected String attribId;
+        protected String mseresult;
+        protected String otherstatedt;
+        protected String returndatelpu;
+        protected String nextlncode;
+
+        public String getAttribId() {
+            return attribId;
+        }
+        @XmlAttribute(name = "Id", namespace = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd")
+        public void setAttribId(String attribId) {
+            this.attribId = attribId;
+        }
+
+        public String getMseresult() {
+            return mseresult;
+        }
+        @XmlElement(name = "MSE_RESULT")
+        public void setMseresult(String mseresult) {
+            this.mseresult = mseresult;
+        }
+
+        public String getOtherstatedt() {
+            return otherstatedt;
+        }
+        @XmlElement(name = "OTHER_STATE_DT")
+        public void setOtherstatedt(String otherstatedt) {
+            this.otherstatedt = otherstatedt;
+        }
+
+        public String getReturndatelpu() {
+            return returndatelpu;
+        }
+        @XmlElement(name = "RETURN_DATE_LPU")
+        public void setReturndatelpu(String returndatelpu) {
+            this.returndatelpu = returndatelpu;
+        }
+
+        public String getNextlncode() {
+            return nextlncode;
+        }
+        @XmlElement(name = "NEXT_LN_CODE")
+        public void setNextlncode(String nextlncode) {
+            this.nextlncode = nextlncode;
+        }
+    }
+
+
 }
