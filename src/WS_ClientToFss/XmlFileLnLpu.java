@@ -25,10 +25,9 @@ import java.util.Calendar;
  * Created by rkurbanov on 10.11.16.
  */
 public class XmlFileLnLpu {
+
     private static int fdoc=0,fdoc2=0,fdoc3=0; // флаги врачей
-
     private static int fvk=0,fvk2=0,fvk3=0; // флаги ВК
-
     private static int fresult=0,fBREACH=0; //флаг блоков result и breach
 
     public static SOAPMessage StartSetxmlFileLn()
@@ -36,8 +35,6 @@ public class XmlFileLnLpu {
         try {
             SOAPMessage soapMessage = CreateMessage();
             Doc.SaveSOAPToXML("LNSkeleton.xml",soapMessage);
-
-
             soapMessage = SignationMessage(soapMessage);
             Doc.SaveSOAPToXML("LNSigned.xml",soapMessage);
             Doc.SaveSOAPToXML("1.xml",soapMessage);

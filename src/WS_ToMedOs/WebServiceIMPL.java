@@ -4,6 +4,7 @@ import EntityClasses.PrParseFileLnLpu;
 import HelpersMethods.GlobalVariables;
 import HelpersMethods.SQLConnect;
 import WS_ClientToFss.XmlFileLnLpuArray;
+import com.sun.xml.internal.ws.developer.JAXWSProperties;
 import ru.ibs.fss.ln.ws.fileoperationsln.*;
 
 import javax.jws.WebMethod;
@@ -40,10 +41,8 @@ public class WebServiceIMPL implements IWebService
         String result = s.getMESS();
 
         //INFO.ROWSET rowset2 = inf!=null?inf.getROWSET():null;
-
        /* LnNumList lnNumList = s!=null?s.getDATA():null;
         List<String> list =  lnNumList.getLNNum()!=null?lnNumList.getLNNum():null;
-
         for (int i = 0; i < list.size(); i++) {
             result += list.get(i);
         }*/
@@ -57,9 +56,12 @@ public class WebServiceIMPL implements IWebService
 
 
     @WebMethod
-    public WSResult SetDisabilityDocumentPack(String datefrom, String dateto) throws SOAPException_Exception {
+    public WSResult SetDisabilityDocumentPack(String datefrom, String dateto, String limit) throws SOAPException_Exception {
+
+
         GlobalVariables.DateTo = dateto;
         GlobalVariables.DateFrom = datefrom;
+        GlobalVariables.limit = limit;
         GlobalVariables.flag=1;
 
         System.setProperty("javax.net.ssl.trustStore",GlobalVariables.PathToSSLcert[1]);//КОНФ
@@ -68,7 +70,22 @@ public class WebServiceIMPL implements IWebService
         FileOperationsLnImplService service = new  FileOperationsLnImplService();
         FileOperationsLn start = service.getFileOperationsLnPort();
 
+        ((javax.xml.ws.BindingProvider)start).getRequestContext().put(JAXWSProperties.CONNECT_TIMEOUT, 1000000);
+        ((javax.xml.ws.BindingProvider) start).getRequestContext().put(JAXWSProperties.REQUEST_TIMEOUT, 1000000);
+
+
+     /*   Map<String, Object> context = ((BindingProvider)service).getRequestContext();
+        int connectionTimeOutInMs = 500000;
+        context.put("com.sun.xml.internal.ws.connect.timeout", connectionTimeOutInMs);
+        context.put("com.sun.xml.internal.ws.request.timeout", connectionTimeOutInMs);
+        context.put("com.sun.xml.ws.request.timeout", connectionTimeOutInMs);
+        context.put("com.sun.xml.ws.connect.timeout", connectionTimeOutInMs);*/
+
+
+
+
         ROWSET rowset = new ROWSET();
+
         PrParseFilelnlpuElement prParseFilelnlpuElement = new PrParseFilelnlpuElement();
         PrParseFilelnlpuElement.PXmlFile pXmlFile= new PrParseFilelnlpuElement.PXmlFile();
         pXmlFile.setROWSET(rowset);
@@ -93,14 +110,8 @@ public class WebServiceIMPL implements IWebService
 
             List<INFO.ROWSET.ROW.ERRORS.ERROR> errors1 = result.getINFO().getROWSET().getROW().get(i).getERRORS().getERROR();
 
-            System.out.println(rows1.get(i).getLncode());
-            System.out.println(rows1.get(i).getIdDD());
-            System.out.println(rows.get(i).getROWNO());
-            System.out.println(rows.get(i).getSTATUS());
-            System.out.println(result.getMESS());
-
             for (int j=0;j<errors1.size();j++) {
-                System.out.println(errors1.get(j).getERRMESS());
+               // System.out.println(errors1.get(j).getERRMESS());
                 res+=" "+j+" "+errors1.get(j).getERRMESS();
             }
 
@@ -152,7 +163,7 @@ public class WebServiceIMPL implements IWebService
 
 
         //System.out.println(result.getMESS());
-        //String messag = result.getMESS();
+        String messag = result.getMESS();
 
 
 
@@ -172,9 +183,9 @@ public class WebServiceIMPL implements IWebService
             }
         }
 
+*/
 
-
-        SaveInBD(messag,result.getSTATUS());*/
+        SaveInBD(messag,result.getSTATUS());
         return result;
     }
 

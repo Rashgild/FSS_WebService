@@ -43,6 +43,7 @@ public class Injecter implements SOAPHandler<SOAPMessageContext> {
             if (WhatTheFunc(soapMsg) == 2)//
             {
                 if(GlobalVariables.flag==1) {
+
                     soapMsg = XmlFileLnLpuArray.Mess();
                 }
 
@@ -54,12 +55,14 @@ public class Injecter implements SOAPHandler<SOAPMessageContext> {
 
                 //soapMsg.writeTo(System.out);
                 GlobalVariables.Type="XmlFileLnLpu";
+                System.out.println("Отсылаю!");
                 context.setMessage(soapMsg);
             }
         }
 // TODO Работа с ответом
             if(!isRequest)// Если не реквест, значит респонз
             {
+                System.out.println("Принимаю ответ!");
                 try {
                     SOAPMessage msg = context.getMessage(); // перехватываем респонз
                     msg = VerifyAndDecrypt.VerifyAndDecrypt(msg);

@@ -24,6 +24,7 @@ public class GlobalVariables {
     public static PrParseFileLnLpu prparse;
 
     public static int flag=0;
+    public static String limit=1000+"";
     public static String DateFrom="10";
     public static String DateTo="10";
     public static String DisabilityDocument_id="1010";

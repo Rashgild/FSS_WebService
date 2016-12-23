@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by rkurbanov on 10.11.16.
@@ -27,6 +25,7 @@ public class SQLConnect {
                     GlobalVariables.nameDB[1], GlobalVariables.passwordDB[1]);
             //System.out.println("Соединение установлено");
             Statement statement = null;
+
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             //Выполним запрос

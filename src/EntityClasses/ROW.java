@@ -105,7 +105,7 @@ public class ROW {
     private String pregn12WFLAG;
     private String hospitaldt1;
     private String hospitaldt2;
-    // @XmlElement(name = "HOSPITAL_BREACH")
+  //  private String closereason;
     private List<HOSPITAL_BREACH>hospitalbreach;
     private String msedt1;
     private String msedt2;
@@ -118,6 +118,15 @@ public class ROW {
     private List<TREAT_FULL_PERIOD> TREAT_PERIODS;
 
     private int IdDD;
+
+   /* public String getClosereason() {
+        return closereason;
+    }
+
+    @XmlElement(name = "CLOSE_REASON")
+    public void setClosereason(String closereason) {
+        this.closereason = closereason;
+    }*/
 
     public int getIdDD() {
         return IdDD;

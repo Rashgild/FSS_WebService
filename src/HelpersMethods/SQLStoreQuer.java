@@ -241,6 +241,7 @@ public class SQLStoreQuer {
     public static String Query_SkeletonSelect()
     {
         return  "select\n" +
+                "dd.issuedate, \n" +
                 "dd.id as DDID,    \n" +
                 "dd.patient_id as DD_PAT, \n" +
                 "dc.patient_id as DC_PAT,\n" +
@@ -251,8 +252,9 @@ public class SQLStoreQuer {
                 ",case when (dc.placementservice is not null or dc.placementservice ='1') then '1' else '0' end as BOZ_FLAG \n" +
                 ",dd.job as LPU_EMPLOYER  \n" +
                 ",dd.workcombotype_id as LPU_EMPL_FLAG \n" +
-                ",dd.number as LN_CODE  \n" +
-                ",vddp.code as PRIMARY_FLAG \n" +
+                ",dd.number as LN_CODE \n" +
+                ",(select dd2.number from disabilitydocument dd2 where dd2.id = dd.prevdocument_id) as PREV_LN \n" +
+                ",case when (vddp.code ='2') then '0' else '1' end as PRIMARY_FLAG \n" +
                 ",case when (select count(a.id) from disabilitydocument a where a.duplicate_id=dd.id) >0 then '1' else '0'end as DUPLICATE_FLAG\n" +
                 ",dd.issuedate as LN_DATE\n" +
                 ",case when ml2.id is not null then ml2.name else ml1.name end as LPU_NAME\n" +
@@ -278,6 +280,7 @@ public class SQLStoreQuer {
                 ",case when (dc.earlypregnancyregistration is not null or dc.earlypregnancyregistration ='1') then '1' else '' end as PREGN12W_FLAG  \n" +
                 ",dd.hospitalizedfrom as HOSPITAL_DT1  \n" +
                 ",dd.hospitalizedto as HOSPITAL_DT2  \n" +
+                ",vddcr.name as CLOSE_REASON \n" +
                 ",mss.assignmentdate as MSE_DT1 \n" +
                 ",mss.registrationdate as MSE_DT2\n" +
                 ",mss.examinationdate as MSE_DT3\n" +
@@ -312,9 +315,10 @@ public class SQLStoreQuer {
                 "left join patient p2 on p2.id=k2.kinsman_id \n" +
                 "left join patient p22 on p22.id=k2.person_id\n" +
                 "left join medsoccommission mss on mss.disabilitydocument_id=dd.id \n" +
-                "where\n" +
-                "dd.issuedate between '"+GlobalVariables.DateFrom+"' and '"+GlobalVariables.DateTo+"'";
-               // "p.id = 343577";
+                "where dd3.number is null and\n" +
+                " p.snils is not null and p.snils != \'\'" +
+                "and dd.issuedate between '"+GlobalVariables.DateFrom+"' and '"+GlobalVariables.DateTo+"'"+
+                " limit "+GlobalVariables.limit;
     }
 
     public static String Query_Treats()
