@@ -51,6 +51,7 @@ public class XmlFileLnLpuArray {
             System.out.println("Создаю сообщение! ");
             GlobalVariables.prparse = prParseFileLnLpu;
             SOAPMessage message = CreateMessage(prParseFileLnLpu);
+
             System.out.println("Подписываю! ");
             message = Signation(prParseFileLnLpu,message);
             //TODO Подписанный запрос храним в переменной
@@ -86,7 +87,6 @@ public class XmlFileLnLpuArray {
             int DDID_1 = rs.getInt("DDID");
 
             List<TREAT_FULL_PERIOD> treat_full_periods = new ArrayList<>();
-
             while (rs2.next()) {
 
                 int DDID_2 = rs2.getInt("DDID");
@@ -97,12 +97,9 @@ public class XmlFileLnLpuArray {
                     treat_period.setTreatdoctorrole(rs2.getString("TREAT_DOCTOR_ROLE"));
                     treat_period.setTreatdoctor(rs2.getString("TREAT_DOCTOR"));
 
-                    //System.out.println(rs2.getString("TREAT_DOCTOR"));
-
                     treat_period.setAttribId("ELN_" + ELN + "_" + per + "_doc");
                     List<TREAT_PERIOD> treat_periods = new ArrayList<>();
                     treat_periods.add(treat_period);
-
 
                     TREAT_FULL_PERIOD treat_full_period = new TREAT_FULL_PERIOD();
                     treat_full_period.setTreatchairmanrole(rs2.getString("TREAT_CHAIRMAN_ROLE"));
@@ -114,9 +111,6 @@ public class XmlFileLnLpuArray {
                     treat_full_period.setTreat_period(treat_periods);
                     treat_full_periods.add(treat_full_period);
                     per++;
-                } else {
-                    //rs2.previous();
-                    // break;
                 }
             }
             rs2.beforeFirst(); // возврат курсора в начало
@@ -349,7 +343,6 @@ public class XmlFileLnLpuArray {
     }
     /** Шифрование сообщения **/
     private static SOAPMessage Encryption(SOAPMessage message) throws Exception {
-
         MessageFactory mf = MessageFactory.newInstance();
         SOAPMessage NewMessg = mf.createMessage();
         NewMessg= Encrypt.CreateXMLAndEncrypt(NewMessg, "my.xml");

@@ -39,29 +39,17 @@ public class WebServiceIMPL implements IWebService
 
 
         String result = s.getMESS();
-
-        //INFO.ROWSET rowset2 = inf!=null?inf.getROWSET():null;
-       /* LnNumList lnNumList = s!=null?s.getDATA():null;
-        List<String> list =  lnNumList.getLNNum()!=null?lnNumList.getLNNum():null;
-        for (int i = 0; i < list.size(); i++) {
-            result += list.get(i);
-        }*/
-
-
-       // SaveInBD(result,"");
-
         return s;
-        //System.out.println(Numbers.get(0));
     }
 
 
     @WebMethod
-    public WSResult SetDisabilityDocumentPack(String datefrom, String dateto, String limit) throws SOAPException_Exception {
-
+    public WSResult SetDisabilityDocumentPack(String datefrom, String dateto, String limit, String offset) throws SOAPException_Exception {
 
         GlobalVariables.DateTo = dateto;
         GlobalVariables.DateFrom = datefrom;
         GlobalVariables.limit = limit;
+        GlobalVariables.Offset = offset;
         GlobalVariables.flag=1;
 
         System.setProperty("javax.net.ssl.trustStore",GlobalVariables.PathToSSLcert[1]);//КОНФ
@@ -161,33 +149,13 @@ public class WebServiceIMPL implements IWebService
         prParseFilelnlpuElement.setPXmlFile(pXmlFile);
         WSResult result = start.prParseFilelnlpu(prParseFilelnlpuElement);
 
-
-        //System.out.println(result.getMESS());
         String messag = result.getMESS();
-
-
-
-
-
-       // System.out.println(rows.get(0).getSTATUS());
-        /*
-        INFO inf = result.getINFO();
-        INFO.ROWSET rowset2 = inf!=null?inf.getROWSET():null;
-        INFO.ROWSET.ROW row = rowset2!=null?(rowset2.getROW()!=null?rowset2.getROW().get(0):null):null;
-        INFO.ROWSET.ROW.ERRORS errors = row!=null?row.getERRORS():null;
-        List<INFO.ROWSET.ROW.ERRORS.ERROR> errors1 = errors!=null?errors.getERROR():null;
-
-        if (errors1!=null&&errors1.size()>0){
-            for (int i = 0; i < errors1.size(); i++) {
-                messag += errors1.get(i).getERRMESS();
-            }
-        }
-
-*/
 
         SaveInBD(messag,result.getSTATUS());
         return result;
     }
+
+
 
     private static void SaveInBD(String result, int status)
     {

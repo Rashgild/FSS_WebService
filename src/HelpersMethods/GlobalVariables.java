@@ -1,11 +1,10 @@
 package HelpersMethods;
 
 import EntityClasses.PrParseFileLnLpu;
+import Jaxb.JaxbParser;
+import Jaxb.Parser;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +20,20 @@ public class GlobalVariables {
     //public static String ogrn="1023000836099";
     //public static String path="C:\\123\\";
 
+
+    public static Parser parser;
+    public static File file;
+
+    public static void setUp() throws Exception {
+        parser = new JaxbParser();
+        file = new File(GlobalVariables.PathToSave+"person.xml");
+    }
+
     public static PrParseFileLnLpu prparse;
 
     public static int flag=0;
     public static String limit=1000+"";
+    public static String Offset=0+"";
     public static String DateFrom="10";
     public static String DateTo="10";
     public static String DisabilityDocument_id="1010";

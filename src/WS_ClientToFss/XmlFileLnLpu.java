@@ -300,13 +300,18 @@ public class XmlFileLnLpu {
                     ROW.removeChild(LN_RESULT);
                 }else {
 
-                    LN_RESULT.removeChild(RETURN_DATE_LPU);
-                    VerifyNode(ResultSQLRequest,"MSE_RESULT", LN_RESULT,MSE_RESULT);
-                    VerifyNode(ResultSQLRequest,"OTHER_STATE_DT", LN_RESULT,OTHER_STATE_DT);
-                    VerifyNode(ResultSQLRequest,"NEXT_LN_CODE", LN_RESULT,NEXT_LN_CODE);
-                    // LN_RESULT.addAttribute(soapEnv.createName("wsu:Id"), "ELN_"+GlobalVariables.eln+"_2_doc");
-                    LN_RESULT.setAttributeNS("http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd","wsu:Id",
-                            "ELN_"+GlobalVariables.eln+"_2_doc");
+                    if(!ResultSQLRequest.getString("GoToWork").equals(""))
+                    {
+                        RETURN_DATE_LPU.addTextNode(ResultSQLRequest.getString("GoToWork"));
+                        //2010-01-13
+                    }else {
+                        LN_RESULT.removeChild(RETURN_DATE_LPU);
+                        VerifyNode(ResultSQLRequest, "MSE_RESULT", LN_RESULT, MSE_RESULT);
+                        VerifyNode(ResultSQLRequest, "OTHER_STATE_DT", LN_RESULT, OTHER_STATE_DT);
+                        VerifyNode(ResultSQLRequest, "NEXT_LN_CODE", LN_RESULT, NEXT_LN_CODE);
+                        LN_RESULT.setAttributeNS("http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd", "wsu:Id",
+                                "ELN_" + GlobalVariables.eln + "_2_doc");
+                    }
 
                     fresult=1;
                 }

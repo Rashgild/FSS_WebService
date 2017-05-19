@@ -17,5 +17,5 @@ public interface IWebService {
     int GetCalculaton(int a);
     FileOperationsLnUserGetNewLNNumRangeOut GetRangeNumbers(String OGRN, int count_numbers) throws SOAPException_Exception;
     WSResult SetDisabilityDocument(String DisabilityDocument_id) throws SOAPException_Exception;
-    WSResult SetDisabilityDocumentPack(String datefrom, String dateto, String limit) throws SOAPException_Exception;
+    WSResult SetDisabilityDocumentPack(String datefrom, String dateto, String limit, String offset) throws SOAPException_Exception;
 }

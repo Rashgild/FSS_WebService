@@ -3,6 +3,7 @@ package WS_ClientToFss;
 import HelpersMethods.Doc;
 import HelpersMethods.GlobalVariables;
 import WS_ClientToFss.SignAndEncrypt.VerifyAndDecrypt;
+import WS_ClientToFss.XmlFile.XmlFileLnLpuNew;
 import org.w3c.dom.Document;
 
 import javax.xml.namespace.QName;
@@ -30,15 +31,7 @@ public class Injecter implements SOAPHandler<SOAPMessageContext> {
 
         if (isRequest) {
             SOAPMessage soapMsg = context.getMessage();
-            //Запрос получения номера.
-          /*  if (WhatTheFunc(soapMsg) == 1)//
-            {
-                soapMsg = LNNNumbers.StartGetLNNumbers(soapMsg);
-                GlobalVariables.Type="LNNumbers";
-                context.setMessage(soapMsg);
-                //System.out.println("Номера!");
-            }
-            */
+
             //Запрос на отправку ЛН.
             if (WhatTheFunc(soapMsg) == 2)//
             {
@@ -46,17 +39,23 @@ public class Injecter implements SOAPHandler<SOAPMessageContext> {
 
                     soapMsg = XmlFileLnLpuArray.Mess();
                 }
-
                 if(GlobalVariables.flag==2) {
-                    soapMsg= XmlFileLnLpu.StartSetxmlFileLn();
+                    //soapMsg= XmlFileLnLpu.StartSetxmlFileLn();
+                    try {
+                        soapMsg = XmlFileLnLpuNew.Mess();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 //soapMsg= XmlFileLnLpu.StartSetxmlFileLn();
-
                 //soapMsg.writeTo(System.out);
                 GlobalVariables.Type="XmlFileLnLpu";
-                System.out.println("Отсылаю!");
-                context.setMessage(soapMsg);
+
+              //  for (int i = 0; i < 2 ; i++) {
+                    System.out.println("Отсылаю!");
+                    context.setMessage(soapMsg);
+                //}
             }
         }
 // TODO Работа с ответом
@@ -77,7 +76,11 @@ public class Injecter implements SOAPHandler<SOAPMessageContext> {
 
                     //System.out.println("\n-----\n");
                     //msg.writeTo(System.out);
-                    context.setMessage(msg);
+
+
+                        context.setMessage(msg);
+
+
 
                 } catch (Exception e) {
                     e.printStackTrace();
